@@ -12,20 +12,20 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          lfs: true
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
-        run: yarn global add semantic-release @semantic-release/changelog
+        run: npm install -g semantic-release @semantic-release/changelog
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+        
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - name: Restore dependencies
         run: |
@@ -37,8 +37,6 @@ jobs:
 
       - name: Publish
         run: msbuild /t:Publish /p:Configuration=Release /p:Platform="Any CPU"
-        
-      - run: tree
 
       - name: Archive JudgeSystem DLL
         uses: actions/upload-artifact@v4
@@ -53,8 +51,8 @@ jobs:
         with:
           name: JudgeSystem 2024uc
           path: |
-            2024uc/bin/JudgeSystem.2024uc.dll
-            2024uc/bin/JudgeSystem.2024uc.pdb
+            2024uc/bin/Release/JudgeSystem.2024uc.dll
+            2024uc/bin/Release/JudgeSystem.2024uc.pdb
 
       - name: Semantic Release
         run: npx semantic-release
