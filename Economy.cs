@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 
 namespace JudgeSystem
 {
-    public abstract class Economy
+    public abstract class Economy: Entity
     {
         protected JudgeSystem JudgeSystem;
         

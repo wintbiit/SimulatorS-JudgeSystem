@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public abstract class Building: IBuilding
+    public abstract class Building: Entity, IBuilding
     {
         public Camp Camp { get; }
         public ushort Id { get; }

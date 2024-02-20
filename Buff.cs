@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public abstract class Buff
+    public abstract class Buff: Entity
     {
         
     }

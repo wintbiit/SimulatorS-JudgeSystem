@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public abstract class Zone: IZone
+    public abstract class Zone: Entity, IZone
     {
         public Camp Camp { get; }
         public ushort Id { get; }

@@ -77,18 +77,20 @@ namespace JudgeSystem
             return false;
         }
 
-        public static void Inject(object obj)
+        public static void Inject(Type t)
         {
-            foreach (var field in obj.GetType().GetFields().Where(f => f.GetCustomAttributes(typeof(PerformanceAttribute)).Count() != 0))
+            foreach (var field in t.GetFields(BindingFlags.FlattenHierarchy | BindingFlags.Static | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(f => f.GetCustomAttributes(typeof(PerformanceAttribute)).Count() != 0))
             {
                 var attr = field.GetCustomAttribute<PerformanceAttribute>()!;
-                field.SetValue(obj, Get(attr.Key));
+                if (field.GetValue(null) != null) continue;
+                field.SetValue(null, Get(attr.Key));
             }
             
-            foreach (var property in obj.GetType().GetProperties().Where(p => p.GetCustomAttributes(typeof(PerformanceAttribute)).Count() != 0))
+            foreach (var property in t.GetProperties(BindingFlags.FlattenHierarchy | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).Where(p => p.GetCustomAttributes(typeof(PerformanceAttribute)).Count() != 0))
             {
                 var attr = property.GetCustomAttribute<PerformanceAttribute>()!;
-                property.SetValue(obj, Get(attr.Key));
+                if (property.GetValue(null) != null) continue;
+                property.SetValue(null, Get(attr.Key));
             }
         }
         

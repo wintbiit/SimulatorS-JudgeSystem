@@ -3,7 +3,7 @@ using JudgeSystem.Interfaces;
 
 namespace JudgeSystem
 {
-    public abstract partial class Robot: IRobot
+    public abstract partial class Robot: Entity, IRobot
     {
         protected JudgeSystem JudgeSystem;
         

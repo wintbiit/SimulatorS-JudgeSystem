@@ -2,12 +2,12 @@
 
 namespace JudgeSystem
 {
-    public abstract class JudgeSystem
+    public abstract class JudgeSystem: Entity
     {
         public float Time { get; protected set; } = 0;
         public abstract float MaxTime { get; }
         
-        public bool FriendlyFire { get; protected set; }
+        public MatchConfig MatchConfig { get; protected set; }
 
         protected JudgeSystem()
         {

@@ -72,7 +72,7 @@ namespace JudgeSystem
         private readonly KillEvent _killEvent = new();
         public void TakeDamage(IShooter shooter)
         {
-            if (shooter.Camp == Camp && !JudgeSystem.FriendlyFire) return;
+            if (shooter.Camp == Camp && !JudgeSystem.MatchConfig.FriendlyFire) return;
             var damage = shooter.CalculateDamage(this);
             
             Health -= damage;
