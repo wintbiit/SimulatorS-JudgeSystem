@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public class ZoneManager
+    public partial class ZoneManager
     {
         private readonly Dictionary<Identity, Zone> _zones = new();
             
