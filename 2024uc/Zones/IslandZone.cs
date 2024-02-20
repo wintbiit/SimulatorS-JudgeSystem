@@ -2,7 +2,7 @@
 using JudgeSystem.Buffs;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Zone
+namespace JudgeSystem._2024uc.Zones
 {
     /// <summary>
     /// 资源岛增益点

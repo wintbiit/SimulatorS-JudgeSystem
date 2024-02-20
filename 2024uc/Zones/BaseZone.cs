@@ -1,13 +1,13 @@
 ﻿using JudgeSystem.Buffs;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Zone
+namespace JudgeSystem._2024uc.Zones
 {
     /// <summary>
     /// 基地增益点
     /// <remarks>5.3.2.1</remarks>
     /// </summary>
-    public class BaseZone: global::JudgeSystem.Zone
+    public class BaseZone: Zone
     {
         public const ushort ID = 0x02;
         public BaseZone(Camp camp) : base(camp, ID)

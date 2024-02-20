@@ -2,7 +2,7 @@
 using JudgeSystem._2024uc.Robot;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Zone
+namespace JudgeSystem._2024uc.Zones
 {
     /// <summary>
     /// 狙击点增益

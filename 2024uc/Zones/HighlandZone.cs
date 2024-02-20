@@ -4,7 +4,7 @@ using JudgeSystem._2024uc.Robot;
 using JudgeSystem.Buffs;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Zone
+namespace JudgeSystem._2024uc.Zones
 {
     /// <summary>
     /// 高地增益区

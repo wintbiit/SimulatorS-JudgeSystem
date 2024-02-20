@@ -1,13 +1,13 @@
 ﻿using JudgeSystem.Buffs;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Zone
+namespace JudgeSystem._2024uc.Zones
 {
     /// <summary>
     /// 补血点
     /// <remarks>5.3.2.7</remarks>
     /// </summary>
-    public class HealZone: global::JudgeSystem.Zone
+    public class HealZone: Zone
     {
         public const ushort ID = 0x01;
         public HealZone(Camp camp) : base(camp, ID)

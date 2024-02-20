@@ -76,6 +76,7 @@
         <Compile Include="Robots\Hero.cs" />
         <Compile Include="Robots\Infantry.cs" />
         <Compile Include="Robots\Interfaces\IHeroController.cs" />
+        <Compile Include="ZoneManager.cs" />
         <Compile Include="Zones\BaseZone.cs" />
         <Compile Include="Zones\HealZone.cs" />
         <Compile Include="Zones\HighlandZone.cs" />

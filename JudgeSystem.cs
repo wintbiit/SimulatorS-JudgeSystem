@@ -1,28 +1,15 @@
-﻿using Autofac;
-
-namespace JudgeSystem
+﻿namespace JudgeSystem
 {
     public abstract class JudgeSystem
     {
-        public float Time { get; protected set; }
-        public float MaxTime { get; protected set; }
-        
-        protected IContainer Container { get; private set; }
-        
-        public Economy Economy { get; protected set; }
-        public RobotManager Robots { get; protected set; }
+        public float Time { get; protected set; } = 0;
+        public abstract float MaxTime { get; }
         
         public bool FriendlyFire { get; protected set; }
 
-        protected JudgeSystem(float time, Economy economy, RobotManager robots)
+        protected JudgeSystem()
         {
-            Time = time;
-
-            var builder = new ContainerBuilder();
-            builder.RegisterInstance(economy).As<Economy>();
-            builder.RegisterInstance(robots).As<RobotManager>();
-
-            Container = builder.Build();
+            
         }
         
         public float Tick(float deltaTime)
