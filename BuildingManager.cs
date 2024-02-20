@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public abstract class BuildingManager
+    public class BuildingManager
     {
         private readonly ConcurrentDictionary<Identity, Building> _buildings = new();
         

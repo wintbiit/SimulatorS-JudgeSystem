@@ -1,18 +1,12 @@
 ﻿using Event;
-using JudgeSystem._2024uc.Building.Interfaces;
+using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem._2024uc.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Building
+namespace JudgeSystem._2024uc.Buildings
 {
-    public class Exchanger: global::JudgeSystem.Building, IExchangerController
+    public partial class Exchanger: IExchangerController
     {
-        public const ushort ID = 0x02;
-        
-        public Exchanger(Camp camp): base(camp, ID)
-        {
-        }
-
         private int _exchangeGrade;
         private readonly ExchangerGradeSelectEvent _exchangerGradeSelectEvent = new ();
         public int ExchangeGrade

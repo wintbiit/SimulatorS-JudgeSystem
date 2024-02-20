@@ -1,5 +1,5 @@
 ﻿using Event;
-using JudgeSystem._2024uc.Building.Interfaces;
+using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem.Event;
 
 namespace JudgeSystem._2024uc.Event

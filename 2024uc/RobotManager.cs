@@ -2,24 +2,22 @@
 
 namespace JudgeSystem._2024uc
 {
-    public class RobotManager: global::JudgeSystem.RobotManager
+    public static class RobotManagerExt
     {
-        public Hero B1 => this[Camp.Blue, Hero.ID] as Hero;
-        public Engineer B2 => this[Camp.Blue, Engineer.ID] as Engineer;
-        public Infantry B3 => this[Camp.Blue, Infantry.ID_1] as Infantry;
-        public Infantry B4 => this[Camp.Blue, Infantry.ID_2] as Infantry;
-        public Infantry B5 => this[Camp.Blue, Infantry.ID_3] as Infantry;
-        public Drone B6 => this[Camp.Blue, Drone.ID] as Drone;
-        public AutoSentinel B7 => this[Camp.Blue, AutoSentinel.ID] as AutoSentinel;
+        public static Hero B1(this RobotManager robotManager) => robotManager[Camp.Blue, Hero.ID] as Hero;
+        public static Engineer B2(this RobotManager robotManager) => robotManager[Camp.Blue, Engineer.ID] as Engineer;
+        public static Infantry B3(this RobotManager robotManager) => robotManager[Camp.Blue, Infantry.ID_1] as Infantry;
+        public static Infantry B4(this RobotManager robotManager) => robotManager[Camp.Blue, Infantry.ID_2] as Infantry;
+        public static Infantry B5(this RobotManager robotManager) => robotManager[Camp.Blue, Infantry.ID_3] as Infantry;
+        public static Drone B6(this RobotManager robotManager) => robotManager[Camp.Blue, Drone.ID] as Drone;
+        public static AutoSentinel B7(this RobotManager robotManager) => robotManager[Camp.Blue, AutoSentinel.ID] as AutoSentinel;
         
-        public Hero R1 => this[Camp.Red, Hero.ID] as Hero;
-        public Engineer R2 => this[Camp.Red, Engineer.ID] as Engineer;
-        public Infantry R3 => this[Camp.Red, Infantry.ID_1] as Infantry;
-        public Infantry R4 => this[Camp.Red, Infantry.ID_2] as Infantry;
-        public Infantry R5 => this[Camp.Red, Infantry.ID_3] as Infantry;
-        public Drone R6 => this[Camp.Red, Drone.ID] as Drone;
-        public AutoSentinel R7 => this[Camp.Red, AutoSentinel.ID] as AutoSentinel;
-        
-        
+        public static Hero R1(this RobotManager robotManager) => robotManager[Camp.Red, Hero.ID] as Hero;
+        public static Engineer R2(this RobotManager robotManager) => robotManager[Camp.Red, Engineer.ID] as Engineer;
+        public static Infantry R3(this RobotManager robotManager) => robotManager[Camp.Red, Infantry.ID_1] as Infantry;
+        public static Infantry R4(this RobotManager robotManager) => robotManager[Camp.Red, Infantry.ID_2] as Infantry;
+        public static Infantry R5(this RobotManager robotManager) => robotManager[Camp.Red, Infantry.ID_3] as Infantry;
+        public static Drone R6(this RobotManager robotManager) => robotManager[Camp.Red, Drone.ID] as Drone;
+        public static AutoSentinel R7(this RobotManager robotManager) => robotManager[Camp.Red, AutoSentinel.ID] as AutoSentinel;
     }
 }

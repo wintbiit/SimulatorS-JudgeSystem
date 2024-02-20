@@ -1,12 +1,11 @@
 ﻿using Event;
-using JudgeSystem._2024uc.Building.Interfaces;
-using JudgeSystem._2024uc.Event;
+using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Building
+namespace JudgeSystem._2024uc.Buildings
 {
-    public class Base: global::JudgeSystem.Building, IBaseController
+    public partial class Base: Building
     {
         public const ushort ID = 0x00;
         
@@ -72,24 +71,6 @@ namespace JudgeSystem._2024uc.Building
             MaxHealth = maxHealth;
             _currentHealth = maxHealth;
             ArmorStatus = BaseArmorStatus.Closed;
-        }
-
-        private BaseArmorStatus _armorStatus;
-        private readonly BaseArmorOpenEvent _baseArmorOpenEvent = new();
-        public BaseArmorStatus ArmorStatus
-        {
-            get => _armorStatus;
-            set
-            {
-                if (_armorStatus == value) return;
-                _armorStatus = value;
-                if (_armorStatus == BaseArmorStatus.Opened)
-                {
-                    _baseArmorOpenEvent.Reset();
-                    _baseArmorOpenEvent.ReadFrom(this);
-                    _baseArmorOpenEvent.Publish();
-                }
-            }
         }
     }
 }

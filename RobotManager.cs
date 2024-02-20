@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public abstract class RobotManager
+    public class RobotManager
     {
         private readonly ConcurrentDictionary<Identity, Robot> _robots = new();
         

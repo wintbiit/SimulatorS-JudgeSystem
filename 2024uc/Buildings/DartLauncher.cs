@@ -1,45 +1,13 @@
 ﻿using Event;
-using JudgeSystem._2024uc.Building.Interfaces;
-using JudgeSystem._2024uc.Event;
+using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem.Event;
 
-namespace JudgeSystem._2024uc.Building
+namespace JudgeSystem._2024uc.Buildings
 {
-    public class DartLauncher: global::JudgeSystem.Building, IDartLauncherController
+    public partial class DartLauncher: Building
     {
         public const ushort ID = 0x03;
         
-        public DartLauncher(Camp camp): base(camp, ID)
-        {
-        }
-
-        private DartLauncherGateStatus _gateStatus;
-        private readonly DartLauncherOpenEvent _openEvent = new();
-        private readonly DartLauncherCloseEvent _closeEvent = new();
-
-        public DartLauncherGateStatus GateStatus
-        {
-            get => _gateStatus;
-            set
-            {
-                if (_gateStatus == value) return;
-                _gateStatus = value;
-                
-                if (_gateStatus == DartLauncherGateStatus.Opened)
-                {
-                    _openEvent.Reset();
-                    _openEvent.ReadFrom(this);
-                    _openEvent.Publish();
-                }
-                else
-                {
-                    _closeEvent.Reset();
-                    _closeEvent.ReadFrom(this);
-                    _closeEvent.Publish();
-                }
-            }
-        }
-
         public bool TryShoot()
         {
             if (GateStatus != DartLauncherGateStatus.Opened) return false;
@@ -94,6 +62,10 @@ namespace JudgeSystem._2024uc.Building
             }
             
             return !_remoteBuyAmmoEvent.Cancelled;
+        }
+        
+        public DartLauncher(Camp camp): base(camp, ID)
+        {
         }
     }
 }

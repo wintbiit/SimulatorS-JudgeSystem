@@ -1,19 +1,13 @@
 ﻿using Event;
-using JudgeSystem._2024uc.Building.Interfaces;
+using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem._2024uc.Event;
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Building
+namespace JudgeSystem._2024uc.Buildings
 {
-    public class PowerRune: global::JudgeSystem.Building, IPowerRuneController
+    public partial class PowerRune: IPowerRuneController
     {
-        public const ushort ID = 0x04;
-        
-        public PowerRune() : base(Camp.Judge, ID)
-        {
-        }
-        
         private PowerRuneStatus _status;
         private readonly PowerRuneStartEvent _startEvent = new();
         private readonly PowerRuneEndEvent _endEvent = new();
@@ -45,7 +39,7 @@ namespace JudgeSystem._2024uc.Building
         
         private readonly PowerRuneActivateEvent _activateEvent = new();
 
-        private readonly JudgeSystemWarningEvent _warningEvent = new JudgeSystemWarningEvent
+        private readonly JudgeSystemWarningEvent _warningEvent = new ()
         {
             Module = "PowerRune",
         };

@@ -1,6 +1,6 @@
 ﻿using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Building.Interfaces
+namespace JudgeSystem._2024uc.Buildings.Interfaces
 {
     public interface IPowerRuneController: IIdentityHolder
     {

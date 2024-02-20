@@ -1,13 +1,12 @@
 ﻿using System;
 using Event;
-using JudgeSystem._2024uc.Building.Interfaces;
-using JudgeSystem._2024uc.Event;
+using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Building
+namespace JudgeSystem._2024uc.Buildings
 {
-    public class Outpost: global::JudgeSystem.Building, IOutpostController
+    public partial class Outpost: Building
     {
         public const ushort ID = 0x01;
         
@@ -66,22 +65,6 @@ namespace JudgeSystem._2024uc.Building
         {
             JudgeSystemWarningEvent.RaiseNew("Outpost", "Trying to coin revive outpost. What are you doing?");
             throw new NotImplementedException();
-        }
-
-        private OutpostArmorStatus _armorStatus;
-        private readonly OutpostArmorStatusChangeEvent _outpostArmorStatusChangeEvent = new();
-        public OutpostArmorStatus ArmorStatus
-        {
-            get => _armorStatus;
-            set
-            {
-                if (_armorStatus == value) return;
-                
-                _armorStatus = value;
-                _outpostArmorStatusChangeEvent.Reset();
-                _outpostArmorStatusChangeEvent.ReadFrom(this);
-                _outpostArmorStatusChangeEvent.Publish();
-            }
         }
         
         public Outpost(Camp camp, int maxHealth): base(camp, ID)
