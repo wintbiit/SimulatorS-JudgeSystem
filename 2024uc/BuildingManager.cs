@@ -16,5 +16,20 @@ namespace JudgeSystem._2024uc
         public static DartLauncher BDartLauncher(this BuildingManager buildingManager) => buildingManager[Camp.Blue, DartLauncher.ID] as DartLauncher;
         
         public static PowerRune PowerRune(this BuildingManager buildingManager) => buildingManager[Camp.Judge, Buildings.PowerRune.ID] as PowerRune;
+
+        public static void Init(this BuildingManager buildingManager)
+        {
+            buildingManager.Add(new Base(Camp.Red));
+            buildingManager.Add(new Outpost(Camp.Red));
+            buildingManager.Add(new Exchanger(Camp.Red));
+            buildingManager.Add(new DartLauncher(Camp.Red));
+            
+            buildingManager.Add(new Base(Camp.Blue));
+            buildingManager.Add(new Outpost(Camp.Blue));
+            buildingManager.Add(new Exchanger(Camp.Blue));
+            buildingManager.Add(new DartLauncher(Camp.Blue));
+            
+            buildingManager.Add(new PowerRune());
+        }
     }
 }

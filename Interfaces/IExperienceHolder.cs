@@ -4,6 +4,6 @@
     {
         public float Experience { get; }
         public void AddExperience(float experience);
-        public uint Level { get; }
+        public ushort Level { get; }
     }
 }

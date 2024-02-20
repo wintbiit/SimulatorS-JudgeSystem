@@ -1,4 +1,4 @@
-﻿namespace JudgeSystem._2024uc.Robot.Interfaces
+﻿namespace JudgeSystem._2024uc.Robots.Interfaces
 {
     public interface IHeroController
     {

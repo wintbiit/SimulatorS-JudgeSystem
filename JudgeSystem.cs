@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JudgeSystem
+﻿namespace JudgeSystem
 {
     public abstract class JudgeSystem: Entity
     {
@@ -8,11 +6,9 @@ namespace JudgeSystem
         public abstract float MaxTime { get; }
         
         public MatchConfig MatchConfig { get; protected set; }
-
-        protected JudgeSystem()
-        {
-            
-        }
+        public RobotManager RobotManager { get; } = new();
+        public ZoneManager ZoneManager { get; } = new();
+        public BuildingManager BuildingManager { get; } = new();
         
         public float Tick(float deltaTime)
         {

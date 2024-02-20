@@ -67,8 +67,9 @@ namespace JudgeSystem._2024uc.Buildings
             throw new NotImplementedException();
         }
         
-        public Outpost(Camp camp, int maxHealth): base(camp, ID)
+        public Outpost(Camp camp): base(camp, ID)
         {
+            var maxHealth = Performance.Predefined.Buildings.OutpostHealth;
             MaxHealth = maxHealth;
             _currentHealth = maxHealth;
             _armorStatus = OutpostArmorStatus.Normal;

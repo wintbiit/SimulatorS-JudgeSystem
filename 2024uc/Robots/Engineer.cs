@@ -1,11 +1,12 @@
-﻿namespace JudgeSystem._2024uc.Robot
+﻿namespace JudgeSystem._2024uc.Robots
 {
-    public class Engineer: global::JudgeSystem.Robot
+    public partial class Engineer: Robot
     {
         public const ushort ID = 2;
         
-        public Engineer(int maxHealth, Camp camp): base(maxHealth, camp, ID)
+        public Engineer(Camp camp, JudgeSystem judgeSystem) : base(camp, ID, judgeSystem)
         {
+            
         }
     }
 }

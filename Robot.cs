@@ -18,12 +18,11 @@ namespace JudgeSystem
             }
         }
 
-        protected Robot(int maxHealth, Camp camp, ushort id)
+        protected Robot(Camp camp, ushort id, JudgeSystem judgeSystem)
         {
-            MaxHealth = maxHealth;
-            _currentHealth = maxHealth;
             Camp = camp;
             Id = id;
+            JudgeSystem = judgeSystem;
         }
     }
 }

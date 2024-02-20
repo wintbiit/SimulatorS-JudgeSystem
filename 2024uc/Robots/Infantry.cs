@@ -1,17 +1,19 @@
 ﻿using Event;
+using JudgeSystem._2024uc.Buffs;
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Robot
+namespace JudgeSystem._2024uc.Robots
 {
-    public class Infantry: global::JudgeSystem.Robot, IShooter
+    public partial class Infantry: Robot, IShooter
     {
         public const ushort ID_1 = 3;
         public const ushort ID_2 = 4;
         public const ushort ID_3 = 5;
         
-        public Infantry(int maxHealth, Camp camp, ushort id): base(maxHealth, camp, id)
+        public Infantry(Camp camp, ushort id, JudgeSystem judgeSystem) : base(camp, id, judgeSystem)
         {
+            
         }
         
         public bool TryShoot()
@@ -31,15 +33,33 @@ namespace JudgeSystem._2024uc.Robot
 
         public uint Heat { get; private set; }
 
-        public uint DeltaHeat => 0;
+        public uint DeltaHeat {get; private set;}
 
-        public uint MaxHeat => 100;
+        public uint MaxHeat { get; private set; }
 
-        public ushort AmmoType => Ammos.Ammo17mm;
+        public int AmmoType => (int) Ammos.A17mm;
+        private Guns _gunType = Guns.Cooldown17mm;
+        public int CalculateDamage(IHealthEntity target) => this.GenericDamageCalculate(target);
+        private readonly GunSelectionEvent _gunSelectionEvent = new();
+        public int GunType
+        {
+            get => (int)_gunType;
+            set
+            {
+                if (GunType == value) return;
+                _gunType = (Guns) value;
+                _gunSelectionEvent.Reset();
+                _gunSelectionEvent.ReadFrom(this);
+                _gunSelectionEvent.Publish();
+                UpdateGunValue();
+            }
+        }
         
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)
         {
+            if (!HasBuff<HealZoneBuff>()) return false;
+            
             _buyAmmoEvent.Reset();
             _buyAmmoEvent.ReadFrom(this);
             _buyAmmoEvent.Count = amount;
@@ -67,6 +87,12 @@ namespace JudgeSystem._2024uc.Robot
             }
             
             return !_remoteBuyAmmoEvent.Cancelled;
+        }
+
+        private void UpdateGunValue()
+        {
+            MaxHeat = Performance.Predefined.Gun[_gunType][_level].MaxHeat;
+            DeltaHeat = Performance.Predefined.Gun[_gunType][_level].DeltaHeat;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Event;
 using JudgeSystem._2024uc.Buildings.Interfaces;
-using JudgeSystem._2024uc.Event;
+using JudgeSystem._2024uc.Events;
 
 namespace JudgeSystem._2024uc.Buildings
 {

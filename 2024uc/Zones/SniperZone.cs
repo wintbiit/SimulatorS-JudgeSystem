@@ -1,5 +1,5 @@
 ﻿using JudgeSystem._2024uc.Buffs;
-using JudgeSystem._2024uc.Robot;
+using JudgeSystem._2024uc.Robots;
 using JudgeSystem.Interfaces;
 
 namespace JudgeSystem._2024uc.Zones

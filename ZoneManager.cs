@@ -5,17 +5,11 @@ namespace JudgeSystem
     public class ZoneManager: Entity
     {
         private readonly Dictionary<Identity, Zone> _zones = new();
-            
-        private struct Identity
-        {
-            public Camp Camp;
-            public ushort Id;
-        }
         
         public virtual Zone this[Camp camp, ushort id]
         {
-            get => _zones[new Identity { Camp = camp, Id = id }];
-            protected set => _zones[new Identity { Camp = camp, Id = id }] = value;
+            get => _zones[new Identity(camp, id)];
+            protected set => _zones[new Identity(camp, id)] = value;
         }
         
         public virtual void ForEach(System.Action<Zone> action)

@@ -1,6 +1,6 @@
 ﻿namespace JudgeSystem.Interfaces
 {
-    public interface IRobot: IHealthEntity, IBuffHolder, IExperienceHolder
+    public interface IRobot: IHealthEntity, IBuffHolder
     {
         
     }

@@ -1,15 +1,17 @@
 ﻿using Event;
+using JudgeSystem._2024uc.Buffs;
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Robot
+namespace JudgeSystem._2024uc.Robots
 {
-    public class Hero: global::JudgeSystem.Robot, IShooter
+    public partial class Hero: Robot, IShooter
     {
         public const ushort ID = 1;
         
-        public Hero(int maxHealth, Camp camp): base(maxHealth, camp, ID)
+        public Hero(Camp camp, JudgeSystem judgeSystem) : base(camp, ID, judgeSystem)
         {
+            
         }
         
         public bool TryShoot()
@@ -29,15 +31,34 @@ namespace JudgeSystem._2024uc.Robot
 
         public uint Heat { get; private set; }
 
-        public uint DeltaHeat => 0;
+        public uint DeltaHeat { get; private set; }
 
-        public uint MaxHeat => 100;
+        public uint MaxHeat { get; private set; }
 
-        public ushort AmmoType => Ammos.Ammo42mm;
+        public int AmmoType => (int) Ammos.A42mm;
+
+        private Guns _gunType = Guns.Default42mm;
+        public int CalculateDamage(IHealthEntity target) => this.GenericDamageCalculate(target);
+        private readonly GunSelectionEvent _gunSelectionEvent = new();
+        public int GunType
+        {
+            get => (int) _gunType;
+            set
+            {
+                if ((int)_gunType == value) return;
+                _gunType = (Guns) value;
+                _gunSelectionEvent.Reset();
+                _gunSelectionEvent.ReadFrom(this);
+                _gunSelectionEvent.Publish();
+                UpdateGunValue();
+            }
+        }
         
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)
         {
+            if (!HasBuff<HealZoneBuff>()) return false;
+            
             _buyAmmoEvent.Reset();
             _buyAmmoEvent.ReadFrom(this);
             _buyAmmoEvent.Count = amount;
@@ -65,6 +86,12 @@ namespace JudgeSystem._2024uc.Robot
             }
             
             return !_remoteBuyAmmoEvent.Cancelled;
+        }
+        
+        private void UpdateGunValue()
+        {
+            MaxHeat = Performance.Predefined.Gun[_gunType][_level].MaxHeat;
+            DeltaHeat = Performance.Predefined.Gun[_gunType][_level].DeltaHeat;
         }
     }
 }

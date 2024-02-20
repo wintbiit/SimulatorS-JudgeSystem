@@ -6,7 +6,7 @@ namespace JudgeSystem.Event
     public class BuyAmmoEvent: IdentityHolderEvent<BuyAmmoEvent>
     {
         public int Count { get; set; }
-        public ushort AmmoType { get; set; }
+        public int AmmoType { get; set; }
 
         public void ReadFrom(IShooter shooter)
         {
@@ -18,7 +18,7 @@ namespace JudgeSystem.Event
     public class RemoteBuyAmmoEvent: IdentityHolderEvent<RemoteBuyAmmoEvent>
     {
         public int Count { get; set; }
-        public ushort AmmoType { get; set; }
+        public int AmmoType { get; set; }
         
         public void ReadFrom(IShooter shooter)
         {

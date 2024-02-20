@@ -34,6 +34,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
         <Reference Include="SimulatorS.Event">
           <HintPath>..\Libs\SimulatorS.Event.dll</HintPath>
         </Reference>
@@ -44,6 +47,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Ammos.cs" />
+        <Compile Include="Buffs\HealZoneBuff.cs" />
         <Compile Include="Buffs\SniperBuff.cs" />
         <Compile Include="BuildingManager.cs" />
         <Compile Include="Buildings\Base.cs" />
@@ -61,20 +65,42 @@
         <Compile Include="Buildings\OutpostController.cs" />
         <Compile Include="Buildings\PowerRune.cs" />
         <Compile Include="Buildings\PowerRuneController.cs" />
+        <Compile Include="Chassis.cs" />
         <Compile Include="Events\BaseArmorOpenEvent.cs" />
         <Compile Include="Events\DartLauncherEvent.cs" />
+        <Compile Include="Events\DroneSummonEvent.cs" />
         <Compile Include="Events\ExchangerEvent.cs" />
         <Compile Include="Events\OutpostArmorStatusChangeEvent.cs" />
         <Compile Include="Events\PowerRuneEvent.cs" />
+        <Compile Include="Guns.cs" />
         <Compile Include="JudgeSystem2024UC.cs" />
+        <Compile Include="Performance.cs" />
+        <Compile Include="PerformanceAmmo.cs" />
+        <Compile Include="PerformanceGun.cs" />
+        <Compile Include="PerformanceBuilding.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="RobotManager.cs" />
         <Compile Include="Robots\AutoSentinel.cs" />
+        <Compile Include="Robots\AutoSentinelController.cs" />
+        <Compile Include="Robots\BalanceInfantry.cs" />
         <Compile Include="Robots\Drone.cs" />
+        <Compile Include="Robots\DroneController.cs" />
         <Compile Include="Robots\Engineer.cs" />
+        <Compile Include="Robots\EngineerController.cs" />
         <Compile Include="Robots\Hero.cs" />
+        <Compile Include="Robots\HeroChassis.cs" />
+        <Compile Include="Robots\HeroController.cs" />
+        <Compile Include="Robots\HeroExperience.cs" />
         <Compile Include="Robots\Infantry.cs" />
+        <Compile Include="Robots\InfantryChassis.cs" />
+        <Compile Include="Robots\InfantryController.cs" />
+        <Compile Include="Robots\InfantryExperience.cs" />
+        <Compile Include="Robots\Interfaces\IAutoSentinelController.cs" />
+        <Compile Include="Robots\Interfaces\IDroneController.cs" />
+        <Compile Include="Robots\Interfaces\IEngineerController.cs" />
         <Compile Include="Robots\Interfaces\IHeroController.cs" />
+        <Compile Include="Robots\Interfaces\IInfantryController.cs" />
+        <Compile Include="Robots\RobotUtils.cs" />
         <Compile Include="ZoneManager.cs" />
         <Compile Include="Zones\BaseZone.cs" />
         <Compile Include="Zones\HealZone.cs" />
@@ -87,6 +113,10 @@
         <Project>{22dac796-0353-4e90-9de3-f4d7edba194f}</Project>
         <Name>JudgeSystem</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

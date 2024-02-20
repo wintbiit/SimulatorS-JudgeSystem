@@ -1,17 +1,26 @@
-﻿using Event;
+﻿using System;
+using Event;
 using JudgeSystem.Event;
+using JudgeSystem.Interfaces;
 
-namespace JudgeSystem
+namespace JudgeSystem._2024uc.Robots
 {
-    public partial class Robot
+    public partial class Infantry: IExperienceHolder
     {
         private float _experience;
+        private const float Tolerance = 0.2f;
         public float Experience
         {
             get => _experience;
             set
             {
+                if (Math.Abs(_experience - value) < Tolerance) return;
                 _experience = value;
+                if (Performance.Predefined.LevelExperience.Contains(_level + 1)
+                    && _experience > Performance.Predefined.LevelExperience[_level + 1])
+                {
+                    Level++;
+                }
             }
         }
 
@@ -20,15 +29,15 @@ namespace JudgeSystem
             _experience += experience;
         }
 
-        private uint _level;
-
+        private ushort _level;
         private readonly LevelUpEvent _levelUpEvent = new();
-        public uint Level
+        public ushort Level
         {
             get => _level;
             set
             {
                 if (_level == value) return;
+                _level = value;
                 _levelUpEvent.Reset();
                 _levelUpEvent.ReadFrom(this);
                 _levelUpEvent.Publish();

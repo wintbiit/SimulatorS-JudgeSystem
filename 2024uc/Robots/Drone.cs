@@ -2,14 +2,15 @@
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Robot
+namespace JudgeSystem._2024uc.Robots
 {
-    public class Drone: global::JudgeSystem.Robot, IShooter
+    public partial class Drone: Robot, IShooter
     {
         public const ushort ID = 6;
         
-        public Drone(int maxHealth, Camp camp): base(maxHealth, camp, ID)
+        public Drone(Camp camp, JudgeSystem judgeSystem) : base(camp, ID, judgeSystem)
         {
+            
         }
         
         public bool TryShoot()
@@ -33,7 +34,10 @@ namespace JudgeSystem._2024uc.Robot
 
         public uint MaxHeat => 100;
 
-        public ushort AmmoType => Ammos.AmmoDart;
+        public int AmmoType => (int)Ammos.Dart;
+        
+        public int GunType => default;
+        public int CalculateDamage(IHealthEntity target) => this.GenericDamageCalculate(target);
         
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)

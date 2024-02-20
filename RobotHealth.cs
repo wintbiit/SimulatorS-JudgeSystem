@@ -46,7 +46,7 @@ namespace JudgeSystem
             }
         }
         
-        public int MaxHealth { get; }
+        public int MaxHealth { get; protected set; }
         
         private readonly ReviveEvent _reviveEvent = new();
         public bool TryRevive()

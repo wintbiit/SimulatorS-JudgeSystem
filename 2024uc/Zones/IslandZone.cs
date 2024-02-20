@@ -1,4 +1,4 @@
-﻿using JudgeSystem._2024uc.Robot;
+﻿using JudgeSystem._2024uc.Robots;
 using JudgeSystem.Buffs;
 using JudgeSystem.Interfaces;
 

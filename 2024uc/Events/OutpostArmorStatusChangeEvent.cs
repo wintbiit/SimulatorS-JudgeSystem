@@ -1,7 +1,7 @@
 ﻿using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem.Event;
 
-namespace JudgeSystem._2024uc.Event
+namespace JudgeSystem._2024uc.Events
 {
     public class OutpostArmorStatusChangeEvent: IdentityHolderEvent<OutpostArmorStatusChangeEvent>
     {

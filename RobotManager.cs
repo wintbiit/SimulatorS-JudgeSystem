@@ -6,19 +6,18 @@ namespace JudgeSystem
     {
         private readonly ConcurrentDictionary<Identity, Robot> _robots = new();
         
-        private struct Identity
+        public Robot this[Camp camp, ushort id]
         {
-            public Camp Camp;
-            public ushort Id;
+            get => _robots[new Identity(camp, id)];
+            protected set => _robots[new Identity(camp, id)] = value;
         }
         
-        public virtual Robot this[Camp camp, ushort id]
+        public void Add(Robot robot)
         {
-            get => _robots[new Identity { Camp = camp, Id = id }];
-            protected set => _robots[new Identity { Camp = camp, Id = id }] = value;
+            _robots[new Identity(robot.Camp, robot.Id)] = robot;
         }
         
-        public virtual void ForEach(System.Action<Robot> action)
+        public void ForEach(System.Action<Robot> action)
         {
             foreach (var robot in _robots.Values)
             {
@@ -26,7 +25,7 @@ namespace JudgeSystem
             }
         }
         
-        public virtual void ForEach(System.Action<Robot, Camp, ushort> action)
+        public void ForEach(System.Action<Robot, Camp, ushort> action)
         {
             foreach (var robot in _robots)
             {

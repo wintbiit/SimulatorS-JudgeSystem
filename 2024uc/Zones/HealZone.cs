@@ -1,4 +1,5 @@
-﻿using JudgeSystem.Buffs;
+﻿using JudgeSystem._2024uc.Buffs;
+using JudgeSystem.Buffs;
 using JudgeSystem.Interfaces;
 
 namespace JudgeSystem._2024uc.Zones
@@ -14,6 +15,7 @@ namespace JudgeSystem._2024uc.Zones
         {
         }
         
+        private static readonly HealZoneBuff HealZoneBuff = new();
         public override void OnEnterZone(IRobot occupier)
         {
             if (occupier.Camp != Camp) return;
@@ -28,6 +30,7 @@ namespace JudgeSystem._2024uc.Zones
             var healBuff = new HealBuff(float.MaxValue, healMultiplier);
             
             occupier.AddBuff(healBuff);
+            occupier.AddBuff(HealZoneBuff);
         }
         
         public override void OnExitZone(IRobot occupier)
@@ -35,6 +38,7 @@ namespace JudgeSystem._2024uc.Zones
             base.OnExitZone(occupier);
             occupier.RemoveBuff<HealBuff>();
             occupier.RemoveBuff<PowerBuff>();
+            occupier.RemoveBuff<HealZoneBuff>();
             
             occupier.AddBuff(new PowerBuff(4f, 2f));
         }

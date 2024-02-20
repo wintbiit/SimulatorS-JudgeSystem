@@ -2,14 +2,15 @@
 using JudgeSystem.Event;
 using JudgeSystem.Interfaces;
 
-namespace JudgeSystem._2024uc.Robot
+namespace JudgeSystem._2024uc.Robots
 {
-    public class AutoSentinel: global::JudgeSystem.Robot, IShooter
+    public partial class AutoSentinel: Robot, IShooter
     {
         public const ushort ID = 7;
 
-        public AutoSentinel(int maxHealth, Camp camp): base(maxHealth, camp, ID)
+        public AutoSentinel(Camp camp, JudgeSystem judgeSystem) : base(camp, ID, judgeSystem)
         {
+            
         }
         
         public bool TryShoot()
@@ -33,8 +34,11 @@ namespace JudgeSystem._2024uc.Robot
 
         public uint MaxHeat => 100;
 
-        public ushort AmmoType => Ammos.Ammo17mm;
-        
+        public int AmmoType => (int) Ammos.A17mm;
+
+        public int GunType => default;
+        public int CalculateDamage(IHealthEntity target) => this.GenericDamageCalculate(target);
+
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)
         {

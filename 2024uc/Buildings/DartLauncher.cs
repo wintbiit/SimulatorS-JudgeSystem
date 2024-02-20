@@ -1,6 +1,8 @@
 ﻿using Event;
 using JudgeSystem._2024uc.Buildings.Interfaces;
+using JudgeSystem._2024uc.Robots;
 using JudgeSystem.Event;
+using JudgeSystem.Interfaces;
 
 namespace JudgeSystem._2024uc.Buildings
 {
@@ -30,42 +32,27 @@ namespace JudgeSystem._2024uc.Buildings
 
         public uint MaxHeat => 100;
 
-        public ushort AmmoType => Ammos.AmmoDart;
-        
+        public int AmmoType => (int) Ammos.Dart;
+        public int GunType => default;
+
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)
         {
-            _buyAmmoEvent.Reset();
-            _buyAmmoEvent.ReadFrom(this);
-            _buyAmmoEvent.Count = amount;
-            _buyAmmoEvent.Publish();
-
-            if (!_buyAmmoEvent.Cancelled)
-            {
-                MaxAmmo += (uint) amount;
-            }
-            
-            return !_buyAmmoEvent.Cancelled;
+            JudgeSystemWarningEvent.RaiseNew("DartLauncher", "Trying to buy ammo. What are you doing?");
+            return false;
         }
 
         private readonly RemoteBuyAmmoEvent _remoteBuyAmmoEvent = new();
         public bool TryRemoteBuyAmmo(int amount)
         {
-            _remoteBuyAmmoEvent.Reset();
-            _remoteBuyAmmoEvent.ReadFrom(this);
-            _remoteBuyAmmoEvent.Count = amount;
-            _remoteBuyAmmoEvent.Publish();
-
-            if (!_remoteBuyAmmoEvent.Cancelled)
-            {
-                MaxAmmo += (uint) amount;
-            }
-            
-            return !_remoteBuyAmmoEvent.Cancelled;
+            JudgeSystemWarningEvent.RaiseNew("DartLauncher", "Trying to remote buy ammo. What are you doing?");
+            return false;
         }
         
         public DartLauncher(Camp camp): base(camp, ID)
         {
         }
+        
+        public int CalculateDamage(IHealthEntity target) => this.GenericDamageCalculate(target);
     }
 }
