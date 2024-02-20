@@ -1,4 +1,5 @@
-# JudgeSystem module for [SimulatorS](https://simulatorx.org/S) ![MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-blue)
+# JudgeSystem module for [SimulatorS](https://simulatorx.org/S) 
+![MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-blue) [![.NET Framework CI](https://github.com/wintbiit/SimulatorS-JudgeSystem/actions/workflows/build.yaml/badge.svg)](https://github.com/wintbiit/SimulatorS-JudgeSystem/actions/workflows/build.yaml)
 
 > Powered by .Net Framework 4.8.1
 
