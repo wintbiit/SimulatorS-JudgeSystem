@@ -1,0 +1,46 @@
+name: .NET Framework CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: yarn global add semantic-release @semantic-release/changelog
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Restore dependencies
+        run: msbuild /t:restore
+
+      - name: Build
+        run: msbuild /p:Configuration=Release /p:Platform="Any CPU"
+
+      - name: Publish
+        run: msbuild /t:Publish /p:Configuration=Release /p:Platform="Any CPU"
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: published-app
+          path: ./JudgeSystem/bin/Release/net48/publish/
+
+      - name: Semantic Release
+        run: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
