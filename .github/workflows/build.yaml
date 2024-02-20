@@ -38,13 +38,23 @@ jobs:
       - name: Publish
         run: msbuild /t:Publish /p:Configuration=Release /p:Platform="Any CPU"
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+      - name: Archive JudgeSystem DLL
+        uses: actions/upload-artifact@v4
         with:
-          name: published-app
-          path: ./JudgeSystem/bin/Release/net48/publish/
+          name: JudgeSystem
+          path: |
+            bin/Release/JudgeSystem.dll
+            bin/Release/JudgeSystem.pdb
+      
+      - name: Archive JudgeSystem 2024uc
+        uses: actions/upload-artifact@v4
+        with:
+          name: JudgeSystem 2024uc
+          path: |
+            2024uc/bin/JudgeSystem.2024uc.dll
+            2024uc/bin/JudgeSystem.2024uc.pdb
 
       - name: Semantic Release
-        run: semantic-release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
