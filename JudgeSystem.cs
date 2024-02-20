@@ -1,4 +1,6 @@
-﻿namespace JudgeSystem
+﻿using System;
+
+namespace JudgeSystem
 {
     public abstract class JudgeSystem
     {

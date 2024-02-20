@@ -67,7 +67,6 @@
         <Compile Include="Events\OutpostArmorStatusChangeEvent.cs" />
         <Compile Include="Events\PowerRuneEvent.cs" />
         <Compile Include="JudgeSystem2024UC.cs" />
-        <Compile Include="Performance.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="RobotManager.cs" />
         <Compile Include="Robots\AutoSentinel.cs" />
