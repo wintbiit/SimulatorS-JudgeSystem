@@ -11,7 +11,7 @@
       "assets": [
         {"path": "bin/Release/JudgeSystem.dll", "name": "JudgeSystem.dll"},
         {"path": "2024uc/bin/Release/JudgeSystem.2024uc.dll", "name": "JudgeSystem.2024uc.dll"},
-        {"path": "2024uc/bin/Release/JudgeSystem.2024ul.dll", "name": "JudgeSystem.2024ul.dll"}
+        {"path": "2024ul/bin/Release/JudgeSystem.2024ul.dll", "name": "JudgeSystem.2024ul.dll"}
       ]
     }]
   ]
