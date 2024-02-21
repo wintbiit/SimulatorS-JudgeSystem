@@ -2,23 +2,28 @@
 
 namespace JudgeSystem.Buffs
 {
-    public class DamageBuff: DurationBuff<DamageBuff>
+    public class DamageBuff: IDurationBuff
     {
         public float DamageMultiplier { get; private set; }
+        public int Duration { get; private set; }
+        public int Elapsed { get; set; }
         
-        public DamageBuff(float duration, float damageMultiplier): base(duration)
+        public DamageBuff(int duration, float damageMultiplier)
         {
             if (damageMultiplier <= 0)
             {
                 throw new System.ArgumentException("Damage multiplier must be greater than 0");
             }
             DamageMultiplier = damageMultiplier;
+            Duration = duration;
         }
 
-        public override DamageBuff Add(DamageBuff buff)
+        public IBuff Add(IBuff other)
         {
+            var buff = (DamageBuff) other;
             DamageMultiplier = Math.Max(DamageMultiplier, buff.DamageMultiplier);
-            return base.Add(buff);
+            Duration += buff.Duration;
+            return this;
         }
     }
 }

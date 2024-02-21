@@ -31,7 +31,7 @@ namespace JudgeSystem._2024uc.Robots
         {
             get
             {
-                if (TryGetBuff<PowerBuff>(out var buff))
+                if (Buffs.TryGet<PowerBuff>(out var buff))
                 {
                     return (int)(ChassisMaxPower * buff.PowerMultiplier);
                 }

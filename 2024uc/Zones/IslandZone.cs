@@ -16,14 +16,14 @@ namespace JudgeSystem._2024uc.Zones
         {
         }
 
-        private static readonly DefenceBuff DefenceBuff = new (60f, 0.75f);
+        private static readonly DefenceBuff DefenceBuff = new (60, 0.75f);
         public override void OnOccupy(IRobot occupier)
         {
             if (occupier is not Engineer) return;
             if (JudgeSystem.Time < 60f) return;
             base.OnOccupy(occupier);
             
-            occupier.AddBuff(DefenceBuff);
+            occupier.Buffs.Add(DefenceBuff);
         }
         
         public override void OnRelease(IRobot occupier)
@@ -31,7 +31,7 @@ namespace JudgeSystem._2024uc.Zones
             if (occupier is not Engineer) return;
             base.OnRelease(occupier);
             
-            occupier.RemoveBuff<DefenceBuff>();
+            occupier.Buffs.Remove<DefenceBuff>();
         }
     }
 }

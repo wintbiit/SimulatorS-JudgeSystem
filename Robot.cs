@@ -12,7 +12,7 @@ namespace JudgeSystem
 
         public void OnTick()
         {
-            if (HasBuff<HealBuff>())
+            if (Buffs.Has<HealBuff>())
             {
                 _damageRecord.Clear();
             }

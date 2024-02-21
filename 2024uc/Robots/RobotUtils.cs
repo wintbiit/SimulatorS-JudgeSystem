@@ -10,7 +10,7 @@ namespace JudgeSystem._2024uc.Robots
             var shootMultiplier = 1f;
             if (shooter is IBuffHolder buffHolder)
             {
-                if (buffHolder.TryGetBuff<DamageBuff>(out var damageBuff))
+                if (buffHolder.Buffs.TryGet<DamageBuff>(out var damageBuff))
                 {
                     shootMultiplier *= damageBuff.DamageMultiplier;
                 }
@@ -19,7 +19,7 @@ namespace JudgeSystem._2024uc.Robots
             var defenceMultiplier = 0f;
             if (target is IBuffHolder targetBuffHolder)
             {
-                if (targetBuffHolder.TryGetBuff<DefenceBuff>(out var defenceBuff))
+                if (targetBuffHolder.Buffs.TryGet<DefenceBuff>(out var defenceBuff))
                 {
                     defenceMultiplier = defenceBuff.DefenceMultiplier;
                 }

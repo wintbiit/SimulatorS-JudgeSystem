@@ -14,7 +14,7 @@ namespace JudgeSystem._2024uc.Zones
         {
         }
 
-        private static readonly DefenceBuff DefenceBuff = new (float.MaxValue, 0.5f);
+        private static readonly DefenceBuff DefenceBuff = new (int.MaxValue, 0.5f);
         public override void OnEnterZone(IRobot occupier)
         {
             if (occupier.Camp != Camp) return;
@@ -22,25 +22,25 @@ namespace JudgeSystem._2024uc.Zones
             switch (JudgeSystem.Time)
             {
                 case > 120 and < 180:
-                    occupier.AddBuff(new CoolDownBuff(float.MaxValue, 2f));
+                    occupier.Buffs.Add(new CoolDownBuff(int.MaxValue, 2f));
                     break;
                 case > 180 and < 300:
-                    occupier.AddBuff(new CoolDownBuff(float.MaxValue, 3f));
+                    occupier.Buffs.Add(new CoolDownBuff(int.MaxValue, 3f));
                     break;
                 case > 300 and < 420:
-                    occupier.AddBuff(new CoolDownBuff(float.MaxValue, 5f));
+                    occupier.Buffs.Add(new CoolDownBuff(int.MaxValue, 5f));
                     break;
             } 
             
-            occupier.AddBuff(DefenceBuff);
+            occupier.Buffs.Add(DefenceBuff);
         }
         
         public override void OnExitZone(IRobot occupier)
         {
             base.OnExitZone(occupier);
             
-            occupier.RemoveBuff<DefenceBuff>();
-            occupier.RemoveBuff<CoolDownBuff>();
+            occupier.Buffs.Remove<DefenceBuff>();
+            occupier.Buffs.Remove<CoolDownBuff>();
         }
     }
 }

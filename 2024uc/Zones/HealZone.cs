@@ -21,26 +21,26 @@ namespace JudgeSystem._2024uc.Zones
             if (occupier.Camp != Camp) return;
             base.OnEnterZone(occupier);
             var healMultiplier = 0.1f;
-            if (JudgeSystem.Time > 240f && occupier.HasBuff<OutCombatBuff>())
+            if (JudgeSystem.Time > 240f && occupier.Buffs.Has<OutCombatBuff>())
             {
                 healMultiplier = 0.25f;
-                var powerBuff = new PowerBuff(float.MaxValue, 2f);
-                occupier.AddBuff(powerBuff);
+                var powerBuff = new PowerBuff(int.MaxValue, 2f);
+                occupier.Buffs.Add(powerBuff);
             }
-            var healBuff = new HealBuff(float.MaxValue, healMultiplier);
+            var healBuff = new HealBuff(int.MaxValue, healMultiplier);
             
-            occupier.AddBuff(healBuff);
-            occupier.AddBuff(HealZoneBuff);
+            occupier.Buffs.Add(healBuff);
+            occupier.Buffs.Add(HealZoneBuff);
         }
         
         public override void OnExitZone(IRobot occupier)
         {
             base.OnExitZone(occupier);
-            occupier.RemoveBuff<HealBuff>();
-            occupier.RemoveBuff<PowerBuff>();
-            occupier.RemoveBuff<HealZoneBuff>();
+            occupier.Buffs.Remove<HealBuff>();
+            occupier.Buffs.Remove<PowerBuff>();
+            occupier.Buffs.Remove<HealZoneBuff>();
             
-            occupier.AddBuff(new PowerBuff(4f, 2f));
+            occupier.Buffs.Add(new PowerBuff(4, 2f));
         }
     }
 }

@@ -2,19 +2,24 @@
 
 namespace JudgeSystem.Buffs
 {
-    public class CoolDownBuff: DurationBuff<CoolDownBuff>
+    public class CoolDownBuff: IDurationBuff
     {
         public float CoolDownMultiplier { get; private set; }
+        public int Duration { get; private set; }
+        public int Elapsed { get; set; }
         
-        public CoolDownBuff(float duration, float coolDownMultiplier): base(duration)
+        public CoolDownBuff(int duration, float coolDownMultiplier)
         {
             CoolDownMultiplier = coolDownMultiplier;
+            Duration = duration;
         }
 
-        public override CoolDownBuff Add(CoolDownBuff buff)
+        public IBuff Add(IBuff ibuff)
         {
+            var buff = (CoolDownBuff) ibuff;
             CoolDownMultiplier = Math.Max(CoolDownMultiplier, buff.CoolDownMultiplier);
-            return base.Add(buff);
+            Duration = buff.Duration + Duration;
+            return this;
         }
     }
 }

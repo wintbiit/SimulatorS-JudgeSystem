@@ -2,17 +2,21 @@
 
 namespace JudgeSystem.Buffs
 {
-    public class DefenceBuff: DurationBuff<DefenceBuff>
+    public class DefenceBuff: IDurationBuff
     {
         public float DefenceMultiplier { get; private set;  }
+        public int Duration { get; private set; }
+        public int Elapsed { get; set; }
         
-        public DefenceBuff(float duration, float defenceMultiplier): base(duration)
+        public DefenceBuff(int duration, float defenceMultiplier)
         {
             DefenceMultiplier = defenceMultiplier;
+            Duration = duration;
         }
 
-        public override DefenceBuff Add(DefenceBuff buff)
+        public IBuff Add(IBuff other)
         {
+            var buff = (DefenceBuff) other;
             if ((DefenceMultiplier >= 0 && buff.DefenceMultiplier >= 0) || (DefenceMultiplier <= 0 && buff.DefenceMultiplier <= 0))
             {
                 DefenceMultiplier = Math.Max(DefenceMultiplier, buff.DefenceMultiplier);
@@ -21,7 +25,9 @@ namespace JudgeSystem.Buffs
             {
                 DefenceMultiplier += buff.DefenceMultiplier;
             }
-            return base.Add(buff);
+            
+            Duration += buff.Duration;
+            return this;
         }
     }
 }

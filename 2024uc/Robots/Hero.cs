@@ -57,7 +57,7 @@ namespace JudgeSystem._2024uc.Robots
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)
         {
-            if (!HasBuff<HealZoneBuff>()) return false;
+            if (!Buffs.Has<HealZoneBuff>()) return false;
             
             _buyAmmoEvent.Reset();
             _buyAmmoEvent.ReadFrom(this);

@@ -22,7 +22,7 @@ namespace JudgeSystem._2024uc.Zones
             if (occupier is not Hero) return;
             base.OnOccupy(occupier);
             
-            occupier.AddBuff(SniperBuff);
+            occupier.Buffs.Add(SniperBuff);
         }
         
         public override void OnRelease(IRobot occupier)
@@ -31,7 +31,7 @@ namespace JudgeSystem._2024uc.Zones
             if (occupier is not Hero) return;
             base.OnRelease(occupier);
 
-            occupier.RemoveBuff<SniperBuff>();
+            occupier.Buffs.Remove<SniperBuff>();
         }
     }
 }

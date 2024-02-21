@@ -17,9 +17,9 @@ namespace JudgeSystem._2024uc.Zones
         {
         }
         
-        private static readonly CoolDownBuff Cool2 = new (float.MaxValue, 2f);
-        private static readonly CoolDownBuff Cool3 = new (float.MaxValue, 3f);
-        private static readonly CoolDownBuff Cool5 = new (float.MaxValue, 5f);
+        private static readonly CoolDownBuff Cool2 = new (int.MaxValue, 2f);
+        private static readonly CoolDownBuff Cool3 = new (int.MaxValue, 3f);
+        private static readonly CoolDownBuff Cool5 = new (int.MaxValue, 5f);
         
         private static readonly Type[] SeizableRobots = new[]
         {
@@ -56,20 +56,20 @@ namespace JudgeSystem._2024uc.Zones
             switch (JudgeSystem.Time)
             {
                 case > 120 and < 180:
-                    buffHolder.AddBuff(Cool2);
+                    buffHolder.Buffs.Add(Cool2);
                     break;
                 case > 180 and < 300:
-                    buffHolder.AddBuff(Cool3);
+                    buffHolder.Buffs.Add(Cool3);
                     break;
                 case > 300 and < 420:
-                    buffHolder.AddBuff(Cool5);
+                    buffHolder.Buffs.Add(Cool5);
                     break;
             }
         }
         
         private static void RemoveBuff(IBuffHolder buffHolder)
         {
-            buffHolder.RemoveBuff<CoolDownBuff>();
+            buffHolder.Buffs.Remove<CoolDownBuff>();
         }
     }
 }

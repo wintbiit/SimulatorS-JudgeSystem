@@ -1,8 +1,6 @@
 ﻿namespace JudgeSystem.Buffs
 {
-    public class HeatPenalty: Buff<HeatPenalty>
-
+    public class HeatPenalty: IBuff
     {
-
     }
 }

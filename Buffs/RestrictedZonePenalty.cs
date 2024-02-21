@@ -1,7 +1,12 @@
 ﻿namespace JudgeSystem.Buffs
 {
-    public class RestrictedZonePenalty: Buff<RestrictedZonePenalty>
+    public class RestrictedZonePenalty: IBuff
     {
         public RestrictedZone Zone;
+        
+        public RestrictedZonePenalty(RestrictedZone zone)
+        {
+            Zone = zone;
+        }
     }
 }

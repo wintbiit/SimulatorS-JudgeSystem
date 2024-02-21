@@ -1,65 +1,96 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using Event;
+using JudgeSystem.Event;
 
 namespace JudgeSystem
 {
-    public abstract class Buff: Entity
+    public interface IBuff
     {
         
     }
-    
-    public abstract class Buff<T>: Buff where T: Buff<T>
+
+    public interface IDurationBuff : IBuff
     {
-        public virtual T Add(T buff)
-        {
-            return (T) this;
-        }
+        public int Duration { get; }
+        public int Elapsed { get; set; }
+        public IBuff Add(IBuff other);
     }
-    
-    public abstract class DurationBuff<T>: Buff<T> where T: DurationBuff<T>
+
+    public static class BuffUtils
     {
-        public float Duration;
-        public float ElapsedTime;
-        public const float Tolerance = 0.01f;
-        
-        protected DurationBuff(float duration)
+        public static bool Tick(this IDurationBuff buff)
         {
-            if (duration < 0)
-            {
-                throw new ArgumentException("Duration must be greater than or equal to 0");
-            }
-            Duration = duration;
-        }
-        
-        public bool IsExpired => ElapsedTime > Duration + Tolerance;
-        
-        public virtual void Update(float deltaTime)
-        {
-            ElapsedTime += deltaTime;
-        }
-        
-        public override T Add(T buff)
-        {
-            if (Duration <= 0 || buff.Duration <= 0)
-            {
-                Duration = Math.Max(Math.Max(Duration, buff.Duration), 0f);
-            }
-            else
-            {
-                Duration += buff.Duration;
-            }
-            return (T) this;
+            buff.Elapsed++;
+            return buff.Elapsed >= buff.Duration;
         }
     }
 
-    public class BuffContainer : ConcurrentDictionary<Type, Buff>
+    public class BuffContainer : ConcurrentDictionary<Type, IBuff>
     {
-        public void Tick(float deltaTime)
+        public BuffContainer()
+        {
+            EventManager.InjectAll(this);
+        }
+        
+        [EventSubscriber]
+        public void OnTick(ref TickEvent evt)
         {
             foreach (var buff in Values)
             {
-                
+                if (buff is IDurationBuff durationBuff)
+                {
+                    if (durationBuff.Tick())
+                    {
+                        TryRemove(buff.GetType(), out _);
+                    }
+                }
             }
+        }
+        
+        public void Add<T>(T buff) where T: IBuff
+        {
+            if (TryGetValue(buff.GetType(), out var existing))
+            {
+                if (existing is IDurationBuff durationBuff)
+                {
+                    this[buff.GetType()] = durationBuff.Add(buff);
+                }
+            }
+            else
+            {
+                TryAdd(buff.GetType(), buff);
+            }
+        }
+        
+        public void Remove<T>() where T: IBuff
+        {
+            TryRemove(typeof(T), out _);
+        }
+        
+        public T Get<T>() where T: IBuff
+        {
+            if (TryGetValue(typeof(T), out var buff))
+            {
+                return (T) buff;
+            }
+            return default;
+        }
+        
+        public bool Has<T>() where T: IBuff
+        {
+            return ContainsKey(typeof(T));
+        }
+        
+        public bool TryGet<T>(out T buff) where T: IBuff
+        {
+            if (TryGetValue(typeof(T), out var b))
+            {
+                buff = (T) b;
+                return true;
+            }
+            buff = default;
+            return false;
         }
     }
 }
