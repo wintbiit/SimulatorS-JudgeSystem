@@ -13,14 +13,15 @@ namespace JudgeSystem._2024uc.Robots
             
         }
         
+        private int _lastShootTick;
         public bool TryShoot()
         {
             if (AmmoShot > MaxAmmo) return false;
             
             AmmoShot++;
             
-            // TODO: 超热量惩罚
             Heat += DeltaHeat;
+            _lastShootTick = JudgeSystem.Time;
             return true;
         }
 
@@ -28,7 +29,21 @@ namespace JudgeSystem._2024uc.Robots
         
         public uint MaxAmmo { get; private set; }
 
-        public uint Heat { get; private set; }
+        private uint _heat;
+        public uint Heat
+        {
+            get => _heat;
+            private set
+            {
+                if (value == _heat) return;
+                _heat = value;
+
+                if (_heat > MaxHeat)
+                {
+                    // TODO: 超热量惩罚
+                }
+            }
+        }
 
         public uint DeltaHeat => 0;
 

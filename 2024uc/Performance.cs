@@ -18,5 +18,7 @@ namespace JudgeSystem._2024uc
         public List<int> LevelExperience;
         
         public static Performance Predefined;// = JsonConvert.DeserializeObject<Performance>("");
+        
+        public int OutCombatInterval;
     }
 }

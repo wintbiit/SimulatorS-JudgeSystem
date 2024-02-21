@@ -22,6 +22,7 @@ namespace JudgeSystem
         
         /// <summary>
         /// 裁判系统时钟周期
+        /// <remarks>unit: ms</remarks>
         /// </summary>
         public int TickPeriod;
         

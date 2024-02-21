@@ -66,6 +66,7 @@ namespace JudgeSystem
             return !_reviveEvent.Cancelled;
         }
         
+        protected int _lastDamageTick;
         private readonly Dictionary<IIdentityHolder, float> _damageRecord = new();
         public void TakeDamage(IShooter shooter)
         {
@@ -83,6 +84,7 @@ namespace JudgeSystem
                 Damage = damage
             };
             damageEvent.Publish();
+            _lastDamageTick = JudgeSystem.Time;
 
             if (Health == 0)
             {

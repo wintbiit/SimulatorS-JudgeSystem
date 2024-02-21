@@ -18,5 +18,10 @@ namespace JudgeSystem.Event
         {
             return Camp == identity.Camp && Id == identity.Id;
         }
+        
+        public string Identity()
+        {
+            return $"[{Camp}:{Id}]";
+        }
     }
 }

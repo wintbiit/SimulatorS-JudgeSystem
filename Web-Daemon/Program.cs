@@ -32,10 +32,11 @@ internal class Program
             FriendlyFire = false,
             WaitTime = 10,
             StatisticTime = 10,
-            TickPeriod = 1,
+            TickPeriod = 1000,
         };
         
         var logger = new Logger();
+        logger.MinLevel = ILogger.LogLevel.Info;
         EventManager.Logger = logger;
         Logs.Logger = logger;
         

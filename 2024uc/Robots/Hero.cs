@@ -14,14 +14,15 @@ namespace JudgeSystem._2024uc.Robots
             
         }
         
+        private int _lastShootTick;
         public bool TryShoot()
         {
             if (AmmoShot > MaxAmmo) return false;
             
             AmmoShot++;
             
-            // TODO: 超热量惩罚
             Heat += DeltaHeat;
+            _lastShootTick = JudgeSystem.Time;
             return true;
         }
 
