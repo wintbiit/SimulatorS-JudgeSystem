@@ -2,6 +2,6 @@
 {
     public interface IAutoSentinelController
     {
-        
+        public bool TryRemoteHeal();
     }
 }

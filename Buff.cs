@@ -59,7 +59,7 @@ namespace JudgeSystem
             }
             else
             {
-                TryAdd(buff.GetType(), buff);
+                this[buff.GetType()] = buff;
             }
         }
         

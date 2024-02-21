@@ -48,6 +48,7 @@
     <ItemGroup>
         <Compile Include="Ammos.cs" />
         <Compile Include="Buffs\HealZoneBuff.cs" />
+        <Compile Include="Buffs\OreExchangerBuff.cs" />
         <Compile Include="Buffs\SniperBuff.cs" />
         <Compile Include="BuildingManager.cs" />
         <Compile Include="Buildings\Base.cs" />

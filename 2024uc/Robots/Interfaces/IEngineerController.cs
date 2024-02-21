@@ -2,6 +2,6 @@
 {
     public interface IEngineerController
     {
-        
+        public int[] GetUsableGrades();
     }
 }

@@ -85,6 +85,7 @@
         <Compile Include="Entity.cs" />
         <Compile Include="Event\AmmoEvent.cs" />
         <Compile Include="Event\ChassisSelectionEvent.cs" />
+        <Compile Include="Event\DamageEvent.cs" />
         <Compile Include="Event\EntityDeathEvent.cs" />
         <Compile Include="Event\GameOverEvent.cs" />
         <Compile Include="Event\GameStartEvent.cs" />
@@ -94,6 +95,7 @@
         <Compile Include="Event\JudgeSystemWarningEvent.cs" />
         <Compile Include="Event\KillEvent.cs" />
         <Compile Include="Event\LevelUpEvent.cs" />
+        <Compile Include="Event\RemoteHealEvent.cs" />
         <Compile Include="Event\ReviveEvent.cs" />
         <Compile Include="Event\StatisticOverEvent.cs" />
         <Compile Include="Event\TickEvent.cs" />
@@ -109,9 +111,8 @@
         <Compile Include="Interfaces\IShooter.cs" />
         <Compile Include="Interfaces\IZone.cs" />
         <Compile Include="JudgeSystem.cs" />
-        <Compile Include="LogUtils.cs" />
+        <Compile Include="Logs.cs" />
         <Compile Include="MatchConfig.cs" />
-        <Compile Include="PerformanceSystem.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="Robot.cs" />
         <Compile Include="RobotBuff.cs" />

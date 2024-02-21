@@ -2,6 +2,6 @@
 {
     public interface IHeroController
     {
-        
+        public bool TryRemoteHeal();
     }
 }

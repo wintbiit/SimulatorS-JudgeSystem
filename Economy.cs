@@ -6,17 +6,21 @@ namespace JudgeSystem
     public abstract class Economy: Entity
     {
         private readonly ConcurrentDictionary<Camp, int> _bank = new();
+        private readonly ConcurrentDictionary<Camp, int> _income = new();
         
         protected MatchConfig MatchConfig;
+        public JudgeSystem JudgeSystem;
         
         protected Economy(MatchConfig matchConfig)
         {
             MatchConfig = matchConfig;
-            _bank.TryAdd(Camp.Red, matchConfig.RedInitialEconomy);
-            _bank.TryAdd(Camp.Blue, matchConfig.BlueInitialEconomy);
+            _bank[Camp.Red] = 0;
+            _bank[Camp.Blue] = 0;
+            _income[Camp.Red] = 0;
+            _income[Camp.Blue] = 0;
         }
         
-        private void IncreaseEconomy(Camp camp, int amount)
+        public void IncreaseEconomy(Camp camp, int amount)
         {
             if (!_bank.ContainsKey(camp))
             {
@@ -24,9 +28,16 @@ namespace JudgeSystem
             }
             
             _bank[camp] += amount;
+            _income[camp] += amount;
         }
         
-        private void DecreaseEconomy(Camp camp, int amount)
+        public void IncreaseEconomy(int amount)
+        {
+            IncreaseEconomy(Camp.Red, amount);
+            IncreaseEconomy(Camp.Blue, amount);
+        }
+        
+        public void DecreaseEconomy(Camp camp, int amount)
         {
             if (!_bank.ContainsKey(camp))
             {
@@ -34,16 +45,6 @@ namespace JudgeSystem
             }
             
             _bank[camp] -= amount;
-        }
-        
-        private void SetEconomy(Camp camp, int amount)
-        {
-            if (!_bank.ContainsKey(camp))
-            {
-                throw new ArgumentException($"Camp {camp} does not exist in the bank.");
-            }
-            
-            _bank[camp] = amount;
         }
         
         public int GetEconomy(Camp camp)
@@ -56,22 +57,25 @@ namespace JudgeSystem
             return _bank[camp];
         }
         
-        public int this[Camp camp]
+        public int GetIncome(Camp camp)
         {
-            get => GetEconomy(camp);
-            set => SetEconomy(camp, value);
-        }
-
-        public int RedEconomy
-        {
-            get => GetEconomy(Camp.Red);
-            set => SetEconomy(Camp.Red, value);
+            if (!_income.ContainsKey(camp))
+            {
+                throw new ArgumentException($"Camp {camp} does not exist in the income.");
+            }
+            
+            return _income[camp];
         }
         
-        public int BlueEconomy
+        public bool TryCost(Camp camp, int amount)
         {
-            get => GetEconomy(Camp.Blue);
-            set => SetEconomy(Camp.Blue, value);
+            if (GetEconomy(camp) < amount)
+            {
+                return false;
+            }
+            
+            DecreaseEconomy(camp, amount);
+            return true;
         }
     }
 }

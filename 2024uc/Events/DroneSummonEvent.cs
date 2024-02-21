@@ -4,6 +4,6 @@ namespace JudgeSystem._2024uc.Events
 {
     public class DroneSummonEvent: IdentityHolderEvent<DroneSummonEvent>
     {
-        
+        public int Cost;
     }
 }

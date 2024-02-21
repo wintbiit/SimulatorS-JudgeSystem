@@ -19,6 +19,7 @@ namespace JudgeSystem
             MaxTime = maxTime;
             Config = matchConfig;
             Economy = economy;
+            Economy.JudgeSystem = this;
             
             TaskQueue = new ConcurrentQueue<Action>();
             TaskNewEvent = new AutoResetEvent(false);

@@ -2,7 +2,7 @@
 
 namespace JudgeSystem
 {
-    public static class LogUtils
+    public static class Logs
     {
         public static ILogger Logger { get; set; }
         

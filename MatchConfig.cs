@@ -25,7 +25,14 @@ namespace JudgeSystem
         /// </summary>
         public int TickPeriod;
         
+        /// <summary>
+        /// 红方初始经济
+        /// </summary>
         public int RedInitialEconomy;
+        
+        /// <summary>
+        /// 蓝方初始经济
+        /// </summary>
         public int BlueInitialEconomy;
     }
 }

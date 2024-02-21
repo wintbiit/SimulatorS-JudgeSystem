@@ -37,7 +37,7 @@ internal class Program
         
         var logger = new Logger();
         EventManager.Logger = logger;
-        LogUtils.Logger = logger;
+        Logs.Logger = logger;
         
         var judgeSystem = new JudgeSystem2024UC(selection, config);
         judgeSystem.Start();

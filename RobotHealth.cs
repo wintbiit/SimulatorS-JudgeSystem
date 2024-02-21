@@ -67,7 +67,6 @@ namespace JudgeSystem
         }
         
         private readonly Dictionary<IIdentityHolder, float> _damageRecord = new();
-        private readonly KillEvent _killEvent = new();
         public void TakeDamage(IShooter shooter)
         {
             if (shooter.Camp == Camp && !JudgeSystem.MatchConfig.FriendlyFire) return;
@@ -76,14 +75,24 @@ namespace JudgeSystem
             Health -= damage;
             
             _damageRecord[shooter] = _damageRecord.TryGetValue(shooter, out var value) ? value + damage : damage;
+            
+            var damageEvent = new DamageEvent
+            {
+                Attacker = shooter,
+                Victim = this,
+                Damage = damage
+            };
+            damageEvent.Publish();
 
             if (Health == 0)
             {
-                _killEvent.Reset();
-                _killEvent.Killer = shooter;
-                _killEvent.Victim = this;
-                _killEvent.DamageRecords = new Dictionary<IIdentityHolder, float>(_damageRecord);
-                _killEvent.Publish();
+                var killEvent = new KillEvent
+                {
+                    Killer = shooter,
+                    Victim = this,
+                    DamageRecords = new Dictionary<IIdentityHolder, float>(_damageRecord)
+                };
+                killEvent.Publish();
             }
         }
     }

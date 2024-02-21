@@ -12,5 +12,6 @@ namespace JudgeSystem._2024uc.Events
     {
         public Ore Ore;
         public int Grade;
+        public int HoldTime;
     }
 }
