@@ -5,18 +5,18 @@ namespace JudgeSystem
 {
     public abstract class Economy: Entity
     {
-        protected JudgeSystem JudgeSystem;
+        private readonly ConcurrentDictionary<Camp, int> _bank = new();
         
-        private readonly ConcurrentDictionary<Camp, float> _bank = new ConcurrentDictionary<Camp, float>();
+        protected MatchConfig MatchConfig;
         
-        public Economy(JudgeSystem judgeSystem)
+        protected Economy(MatchConfig matchConfig)
         {
-            JudgeSystem = judgeSystem;
+            MatchConfig = matchConfig;
+            _bank.TryAdd(Camp.Red, matchConfig.RedInitialEconomy);
+            _bank.TryAdd(Camp.Blue, matchConfig.BlueInitialEconomy);
         }
-
-        protected abstract void OnTick(float deltaTime);
         
-        private void IncreaseEconomy(Camp camp, float amount)
+        private void IncreaseEconomy(Camp camp, int amount)
         {
             if (!_bank.ContainsKey(camp))
             {
@@ -26,7 +26,7 @@ namespace JudgeSystem
             _bank[camp] += amount;
         }
         
-        private void DecreaseEconomy(Camp camp, float amount)
+        private void DecreaseEconomy(Camp camp, int amount)
         {
             if (!_bank.ContainsKey(camp))
             {
@@ -36,7 +36,7 @@ namespace JudgeSystem
             _bank[camp] -= amount;
         }
         
-        private void SetEconomy(Camp camp, float amount)
+        private void SetEconomy(Camp camp, int amount)
         {
             if (!_bank.ContainsKey(camp))
             {
@@ -46,7 +46,7 @@ namespace JudgeSystem
             _bank[camp] = amount;
         }
         
-        public float GetEconomy(Camp camp)
+        public int GetEconomy(Camp camp)
         {
             if (!_bank.ContainsKey(camp))
             {
@@ -56,19 +56,19 @@ namespace JudgeSystem
             return _bank[camp];
         }
         
-        public float this[Camp camp]
+        public int this[Camp camp]
         {
             get => GetEconomy(camp);
             set => SetEconomy(camp, value);
         }
 
-        public float RedEconomy
+        public int RedEconomy
         {
             get => GetEconomy(Camp.Red);
             set => SetEconomy(Camp.Red, value);
         }
         
-        public float BlueEconomy
+        public int BlueEconomy
         {
             get => GetEconomy(Camp.Blue);
             set => SetEconomy(Camp.Blue, value);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace JudgeSystem
 {
@@ -8,7 +9,17 @@ namespace JudgeSystem
         
         public virtual Zone this[Camp camp, ushort id]
         {
-            get => _zones[new Identity(camp, id)];
+            get
+            {
+                if (_zones.TryGetValue(new Identity(camp, id), out var robot))
+                {
+                    return robot;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException($"Zone {camp} {id} not found");
+                }
+            }
             protected set => _zones[new Identity(camp, id)] = value;
         }
         

@@ -66,6 +66,7 @@
         <Compile Include="Buildings\PowerRune.cs" />
         <Compile Include="Buildings\PowerRuneController.cs" />
         <Compile Include="Chassis.cs" />
+        <Compile Include="Economy2024UC.cs" />
         <Compile Include="Events\BaseArmorOpenEvent.cs" />
         <Compile Include="Events\DartLauncherEvent.cs" />
         <Compile Include="Events\DroneSummonEvent.cs" />
@@ -76,6 +77,7 @@
         <Compile Include="JudgeSystem2024UC.cs" />
         <Compile Include="Performance.cs" />
         <Compile Include="PerformanceAmmo.cs" />
+        <Compile Include="PerformanceEconomy.cs" />
         <Compile Include="PerformanceGun.cs" />
         <Compile Include="PerformanceBuilding.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>

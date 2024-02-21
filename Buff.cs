@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 
 namespace JudgeSystem
 {
@@ -6,6 +7,7 @@ namespace JudgeSystem
     {
         
     }
+    
     public abstract class Buff<T>: Buff where T: Buff<T>
     {
         public virtual T Add(T buff)
@@ -47,6 +49,17 @@ namespace JudgeSystem
                 Duration += buff.Duration;
             }
             return (T) this;
+        }
+    }
+
+    public class BuffContainer : ConcurrentDictionary<Type, Buff>
+    {
+        public void Tick(float deltaTime)
+        {
+            foreach (var buff in Values)
+            {
+                
+            }
         }
     }
 }

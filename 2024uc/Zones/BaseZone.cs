@@ -21,13 +21,13 @@ namespace JudgeSystem._2024uc.Zones
             base.OnEnterZone(occupier);
             switch (JudgeSystem.Time)
             {
-                case > 120f and < 180f:
+                case > 120 and < 180:
                     occupier.AddBuff(new CoolDownBuff(float.MaxValue, 2f));
                     break;
-                case > 180f and < 300f:
+                case > 180 and < 300:
                     occupier.AddBuff(new CoolDownBuff(float.MaxValue, 3f));
                     break;
-                case > 300f and < 420f:
+                case > 300 and < 420:
                     occupier.AddBuff(new CoolDownBuff(float.MaxValue, 5f));
                     break;
             } 

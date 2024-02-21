@@ -1,10 +1,12 @@
-﻿namespace JudgeSystem
+﻿using Event;
+
+namespace JudgeSystem
 {
     public abstract class Entity
     {
         protected Entity()
         {
-            PerformanceSystem.Inject(GetType());
+            EventManager.InjectAll(this);
         }
     }
 }

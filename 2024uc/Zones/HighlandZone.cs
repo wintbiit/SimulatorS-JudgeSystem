@@ -55,13 +55,13 @@ namespace JudgeSystem._2024uc.Zones
         {
             switch (JudgeSystem.Time)
             {
-                case > 120f and < 180f:
+                case > 120 and < 180:
                     buffHolder.AddBuff(Cool2);
                     break;
-                case > 180f and < 300f:
+                case > 180 and < 300:
                     buffHolder.AddBuff(Cool3);
                     break;
-                case > 300f and < 420f:
+                case > 300 and < 420:
                     buffHolder.AddBuff(Cool5);
                     break;
             }

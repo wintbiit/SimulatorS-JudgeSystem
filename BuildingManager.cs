@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 
 namespace JudgeSystem
 {
@@ -8,7 +9,17 @@ namespace JudgeSystem
 
         public Building this[Camp camp, ushort id]
         {
-            get => _buildings[new Identity(camp, id)];
+            get
+            {
+                if (_buildings.TryGetValue(new Identity(camp, id), out var robot))
+                {
+                    return robot;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException($"Zone {camp} {id} not found");
+                }
+            }
             protected set => _buildings[new Identity(camp, id)] = value;
         }
         

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JudgeSystem", "JudgeSystem.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2024uc", "2024uc\2024uc.csproj", "{6CEE8F4D-947D-4238-8C41-E521F230FA1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Daemon", "Web-Daemon\Web-Daemon.csproj", "{D1063036-DD39-42D6-AFF9-57A512015D16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{6CEE8F4D-947D-4238-8C41-E521F230FA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CEE8F4D-947D-4238-8C41-E521F230FA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CEE8F4D-947D-4238-8C41-E521F230FA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1063036-DD39-42D6-AFF9-57A512015D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1063036-DD39-42D6-AFF9-57A512015D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1063036-DD39-42D6-AFF9-57A512015D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1063036-DD39-42D6-AFF9-57A512015D16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
