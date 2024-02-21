@@ -36,4 +36,5 @@ namespace JudgeSystem._2024uc.Events
             RingCount = powerRuneController.LastRingCount;
         }
     }
+    
 }

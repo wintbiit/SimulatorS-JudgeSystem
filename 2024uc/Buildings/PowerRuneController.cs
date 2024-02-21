@@ -1,4 +1,5 @@
-﻿using Event;
+﻿using System.Linq;
+using Event;
 using JudgeSystem._2024uc.Buildings.Interfaces;
 using JudgeSystem._2024uc.Events;
 using JudgeSystem.Event;
@@ -24,11 +25,13 @@ namespace JudgeSystem._2024uc.Buildings
                     _startEvent.Reset();
                     _startEvent.ReadFrom(this);
                     _startEvent.Publish();
+                    Logs.I($"Power Rune {Type} Started");
                 } else if (_status == PowerRuneStatus.Inactive)
                 {
                     _endEvent.Reset();
                     _endEvent.ReadFrom(this);
                     _endEvent.Publish();
+                    Logs.I($"Power Rune {Type} Ended");
                 }
             }
         }
@@ -59,6 +62,39 @@ namespace JudgeSystem._2024uc.Buildings
             _activateEvent.Reset();
             _activateEvent.ReadFrom(this);
             _activateEvent.Publish();
+        }
+
+        //持续时间: 45s
+        private static readonly int[] SmallPowerRuneTicks = { 60, 150 };
+        private static readonly int[] SmallPowerRuneCloseTicks = { 105, 195 };
+        private static readonly int[] BigPowerRuneTicks = { 240, 315, 390 };
+        private static readonly int[] BigPowerRuneCloseTicks = { 285, 360, 435 };
+        [EventSubscriber]
+        public void OnTick(ref TickEvent evt)
+        {
+            if (SmallPowerRuneTicks.Contains(evt.Time))
+            {
+                Type = PowerRuneType.Small;
+                Status = PowerRuneStatus.Active;
+            }
+            
+            if (SmallPowerRuneCloseTicks.Contains(evt.Time))
+            {
+                Type = PowerRuneType.Small;
+                Status = PowerRuneStatus.Inactive;
+            }
+            
+            if (BigPowerRuneTicks.Contains(evt.Time))
+            {
+                Type = PowerRuneType.Large;
+                Status = PowerRuneStatus.Active;
+            }
+            
+            if (BigPowerRuneCloseTicks.Contains(evt.Time))
+            {
+                Type = PowerRuneType.Large;
+                Status = PowerRuneStatus.Inactive;
+            }
         }
     }
 }
