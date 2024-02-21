@@ -53,6 +53,14 @@ jobs:
           path: |
             2024uc/bin/Release/JudgeSystem.2024uc.dll
             2024uc/bin/Release/JudgeSystem.2024uc.pdb
+            
+      - name: Archive JudgeSystem 2024ul
+        uses: actions/upload-artifact@v4
+        with:
+          name: JudgeSystem 2024uc
+          path: |
+            2024uc/bin/Release/JudgeSystem.2024ul.dll
+            2024uc/bin/Release/JudgeSystem.2024ul.pdb
 
       - name: Semantic Release
         run: npx semantic-release

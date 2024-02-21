@@ -1,11 +1,11 @@
 ﻿using Event;
 using JudgeSystem.Event;
 
-namespace JudgeSystem._2024uc
+namespace JudgeSystem._2024ul
 {
-    public class Economy2024UC: Economy
+    public class Economy2024UL: Economy
     {
-        public Economy2024UC(MatchConfig matchConfig) : base(matchConfig)
+        public Economy2024UL(MatchConfig matchConfig) : base(matchConfig)
         {
         }
 

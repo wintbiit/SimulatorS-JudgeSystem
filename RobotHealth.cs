@@ -49,6 +49,7 @@ namespace JudgeSystem
         public int MaxHealth { get; protected set; }
         
         private readonly ReviveEvent _reviveEvent = new();
+        private readonly RemoteReviveEvent _remoteReviveEvent = new();
         public bool TryRevive()
         {
             _reviveEvent.Reset();
@@ -59,12 +60,9 @@ namespace JudgeSystem
 
         public bool TryCoinRevive()
         {
-            _reviveEvent.Reset();
-            _reviveEvent.ReadFrom(this);
-            _reviveEvent.Remote = true;
-            // TODO: Implement coin system
-            _reviveEvent.Cost = 1;
-            _reviveEvent.Publish();
+            _remoteReviveEvent.Reset();
+            _remoteReviveEvent.ReadFrom(this);
+            _remoteReviveEvent.Publish();
             return !_reviveEvent.Cancelled;
         }
         
@@ -76,18 +74,16 @@ namespace JudgeSystem
             var damage = shooter.CalculateDamage(this);
             
             Health -= damage;
+            
+            _damageRecord[shooter] = _damageRecord.TryGetValue(shooter, out var value) ? value + damage : damage;
 
             if (Health == 0)
             {
                 _killEvent.Reset();
                 _killEvent.Killer = shooter;
                 _killEvent.Victim = this;
-                _killEvent.Assistants = _damageRecord.Keys;
+                _killEvent.DamageRecords = new Dictionary<IIdentityHolder, float>(_damageRecord);
                 _killEvent.Publish();
-            }
-            else
-            {
-                _damageRecord[shooter] = _damageRecord.TryGetValue(shooter, out var value) ? value + damage : damage;
             }
         }
     }

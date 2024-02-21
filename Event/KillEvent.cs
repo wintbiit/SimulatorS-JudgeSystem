@@ -8,6 +8,6 @@ namespace JudgeSystem.Event
     {
         public IIdentityHolder Killer;
         public IIdentityHolder Victim;
-        public IEnumerable<IIdentityHolder> Assistants;
+        public Dictionary<IIdentityHolder, float> DamageRecords;
     }
 }
