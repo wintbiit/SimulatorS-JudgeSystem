@@ -49,9 +49,43 @@ namespace JudgeSystem._2024uc.Buildings
         
         public int MaxHealth { get; }
         
+        private int _shieldHealth;
+
+        public int ShieldHealth
+        {
+            get => _shieldHealth;
+            set
+            {
+                if (value < 0)
+                {
+                    _shieldHealth = 0;
+                    ArmorStatus = BaseArmorStatus.Opened;
+                }
+                else if (value > MaxShieldHealth)
+                {
+                    _shieldHealth = MaxShieldHealth;
+                }
+                else
+                {
+                    _shieldHealth = value;
+                }
+            }
+        }
+        
+        public int MaxShieldHealth { get; }
+        
         public void TakeDamage(IShooter shooter)
         {
-            Health -= shooter.CalculateDamage(this);
+            if (!JudgeSystem.MatchConfig.FriendlyFire && shooter.Camp == Camp) return;
+
+            if (_armorStatus != BaseArmorStatus.Opened && shooter is not DartLauncher)
+            {
+                ShieldHealth -= shooter.CalculateDamage(this);
+            }
+            else
+            {
+                Health -= shooter.CalculateDamage(this);
+            }
         }
 
         public bool TryRevive()
@@ -71,6 +105,7 @@ namespace JudgeSystem._2024uc.Buildings
             var maxHealth = Performance.Predefined.Buildings.BaseHealth;
             MaxHealth = maxHealth;
             _currentHealth = maxHealth;
+            MaxShieldHealth = Performance.Predefined.Buildings.BaseShieldHealth;
             ArmorStatus = BaseArmorStatus.Closed;
         }
     }

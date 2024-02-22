@@ -6,7 +6,7 @@ namespace JudgeSystem
     {
         public Camp Camp { get; }
         public ushort Id { get; }
-        protected JudgeSystem JudgeSystem;
+        public JudgeSystem JudgeSystem;
         
         protected Zone(Camp camp, ushort id)
         {

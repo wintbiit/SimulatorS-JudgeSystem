@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using JudgeSystem.Interfaces;
 
 namespace JudgeSystem
 {
     public class BuildingManager
     {
         private readonly ConcurrentDictionary<Identity, Building> _buildings = new();
+        private JudgeSystem _judgeSystem;
 
         public Building this[Camp camp, ushort id]
         {
@@ -25,7 +27,13 @@ namespace JudgeSystem
         
         public void Add(Building building)
         {
-            _buildings[new Identity(building.Camp, building.Id)] = building;
+            building.JudgeSystem = _judgeSystem;
+            _buildings[building.Identity()] = building;
+        }
+        
+        public BuildingManager(JudgeSystem judgeSystem)
+        {
+            _judgeSystem = judgeSystem;
         }
     }
 }

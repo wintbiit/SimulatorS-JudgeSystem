@@ -5,7 +5,7 @@ namespace JudgeSystem
 {
     public abstract partial class Robot: Entity, IRobot
     {
-        protected JudgeSystem JudgeSystem;
+        public JudgeSystem JudgeSystem;
         
         public Camp Camp { get; }
         public ushort Id { get; }

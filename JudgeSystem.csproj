@@ -75,6 +75,7 @@
         <Compile Include="Buffs\DefenceBuff.cs" />
         <Compile Include="Buffs\HealBuff.cs" />
         <Compile Include="Buffs\HeatPenalty.cs" />
+        <Compile Include="Buffs\InvincibleBuff.cs" />
         <Compile Include="Buffs\OutCombatBuff.cs" />
         <Compile Include="Buffs\PowerBuff.cs" />
         <Compile Include="Buffs\RestrictedZonePenalty.cs" />

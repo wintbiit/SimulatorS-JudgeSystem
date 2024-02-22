@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using JudgeSystem.Interfaces;
 
 namespace JudgeSystem
 {
     public class ZoneManager: Entity
     {
         private readonly Dictionary<Identity, Zone> _zones = new();
+        private JudgeSystem _judgeSystem;
         
         public virtual Zone this[Camp camp, ushort id]
         {
@@ -23,6 +25,12 @@ namespace JudgeSystem
             protected set => _zones[new Identity(camp, id)] = value;
         }
         
+        public void Add(Zone zone)
+        {
+            zone.JudgeSystem = _judgeSystem;
+            _zones[zone.Identity()] = zone;
+        }
+        
         public virtual void ForEach(System.Action<Zone> action)
         {
             foreach (var zone in _zones.Values)
@@ -37,6 +45,11 @@ namespace JudgeSystem
             {
                 action(zone.Value, zone.Key.Camp, zone.Key.Id);
             }
+        }
+        
+        public ZoneManager(JudgeSystem judgeSystem)
+        {
+            _judgeSystem = judgeSystem;
         }
     }
 }

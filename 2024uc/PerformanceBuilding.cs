@@ -6,6 +6,7 @@
         {
             public int BaseHealth;
             public int OutpostHealth;
+            public int BaseShieldHealth;
         }
         
         public BuildingPerformance Buildings;

@@ -8,9 +8,9 @@
 
     public static class IdentityHelper
     {
-        public static string Identity(this IIdentityHolder holder)
+        public static Identity Identity(this IIdentityHolder holder)
         {
-            return $"[{holder.Camp}:{holder.Id}]";
+            return new Identity(holder.Camp, holder.Id);
         }
     }
 }

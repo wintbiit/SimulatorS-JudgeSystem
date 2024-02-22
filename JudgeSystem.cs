@@ -20,6 +20,9 @@ namespace JudgeSystem
             Config = matchConfig;
             Economy = economy;
             Economy.JudgeSystem = this;
+            RobotManager = new RobotManager(this);
+            BuildingManager = new BuildingManager(this);
+            ZoneManager = new ZoneManager(this);
             
             TaskQueue = new ConcurrentQueue<Action>();
             TaskNewEvent = new AutoResetEvent(false);
@@ -30,9 +33,9 @@ namespace JudgeSystem
         }
         
         public MatchConfig MatchConfig { get; protected set; }
-        public RobotManager RobotManager { get; } = new();
-        public ZoneManager ZoneManager { get; } = new();
-        public BuildingManager BuildingManager { get; } = new();
+        public RobotManager RobotManager { get; }
+        public ZoneManager ZoneManager { get; }
+        public BuildingManager BuildingManager { get; }
         public Economy Economy { get; }
         public int Time { get; protected set; } = 0;
         protected int MaxTime { get; }

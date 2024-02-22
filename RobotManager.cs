@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using JudgeSystem.Interfaces;
 
 namespace JudgeSystem
 {
     public class RobotManager: Entity
     {
         private readonly ConcurrentDictionary<Identity, Robot> _robots = new();
+        private JudgeSystem _judgeSystem;
         
         public Robot this[Camp camp, ushort id]
         {
@@ -25,7 +27,8 @@ namespace JudgeSystem
 
         public void Add(Robot robot)
         {
-            _robots[new Identity(robot.Camp, robot.Id)] = robot;
+            robot.JudgeSystem = _judgeSystem;
+            _robots[robot.Identity()] = robot;
         }
         
         public void ForEach(System.Action<Robot> action)
@@ -42,6 +45,11 @@ namespace JudgeSystem
             {
                 action(robot.Value, robot.Key.Camp, robot.Key.Id);
             }
+        }
+        
+        public RobotManager(JudgeSystem judgeSystem)
+        {
+            _judgeSystem = judgeSystem;
         }
     }
 }
