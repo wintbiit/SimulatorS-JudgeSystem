@@ -3,12 +3,12 @@ using JudgeSystem.Event;
 
 namespace JudgeSystem._2024uc.Events
 {
-    public class ExchangerGradeSelectEvent: IdentityHolderEvent<ExchangerGradeSelectEvent>
+    public class ExchangerGradeSelectEvent: IdentityHolderEvent
     {
         public int Grade;
     }
     
-    public class ExchangeOreEvent: IdentityHolderEvent<ExchangeOreEvent>
+    public class ExchangeOreEvent: IdentityHolderEvent
     {
         public Ore Ore;
         public int Grade;

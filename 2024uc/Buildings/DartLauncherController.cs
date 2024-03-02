@@ -20,13 +20,11 @@ namespace JudgeSystem._2024uc.Buildings
                 
                 if (_gateStatus == DartLauncherGateStatus.Opened)
                 {
-                    _openEvent.Reset();
                     _openEvent.ReadFrom(this);
                     _openEvent.Publish();
                 }
                 else
                 {
-                    _closeEvent.Reset();
                     _closeEvent.ReadFrom(this);
                     _closeEvent.Publish();
                 }

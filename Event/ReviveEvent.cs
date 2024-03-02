@@ -1,11 +1,14 @@
-﻿namespace JudgeSystem.Event
+﻿using Event;
+
+namespace JudgeSystem.Event
 {
-    public class ReviveEvent: IdentityHolderEvent<ReviveEvent>
+    public class ReviveEvent: IdentityHolderEvent, ICancelable
     {
-        
+        public bool IsCancelled { get; set; }
     }
     
-    public class RemoteReviveEvent: IdentityHolderEvent<RemoteReviveEvent>
+    public class RemoteReviveEvent: IdentityHolderEvent, ICancelable
     {
+        public bool IsCancelled { get; set; }
     }
 }

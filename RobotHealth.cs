@@ -33,13 +33,11 @@ namespace JudgeSystem
                 }
 
                 if (_cachedHealth == _currentHealth) return;
-                _healthChangeEvent.Reset();
                 _healthChangeEvent.ReadFrom(this);
                 _healthChangeEvent.Publish();
                     
                 if (_currentHealth <= 0)
                 {
-                    _entityDeathEvent.Reset();
                     _entityDeathEvent.ReadFrom(this);
                     _entityDeathEvent.Publish();
                 }
@@ -52,18 +50,16 @@ namespace JudgeSystem
         private readonly RemoteReviveEvent _remoteReviveEvent = new();
         public bool TryRevive()
         {
-            _reviveEvent.Reset();
             _reviveEvent.ReadFrom(this);
             _reviveEvent.Publish();
-            return !_reviveEvent.Cancelled;
+            return !_reviveEvent.IsCancelled;
         }
 
         public bool TryCoinRevive()
         {
-            _remoteReviveEvent.Reset();
             _remoteReviveEvent.ReadFrom(this);
             _remoteReviveEvent.Publish();
-            return !_reviveEvent.Cancelled;
+            return !_reviveEvent.IsCancelled;
         }
         
         protected int _lastDamageTick;

@@ -49,7 +49,6 @@ namespace JudgeSystem._2024uc.Robots
             {
                 if (GunType == value) return;
                 _gunType = (Guns) value;
-                _gunSelectionEvent.Reset();
                 _gunSelectionEvent.ReadFrom(this);
                 _gunSelectionEvent.Publish();
                 UpdateGunValue();
@@ -61,33 +60,31 @@ namespace JudgeSystem._2024uc.Robots
         {
             if (!Buffs.Has<HealZoneBuff>()) return false;
             
-            _buyAmmoEvent.Reset();
             _buyAmmoEvent.ReadFrom(this);
             _buyAmmoEvent.Count = amount;
             _buyAmmoEvent.Publish();
 
-            if (!_buyAmmoEvent.Cancelled)
+            if (!_buyAmmoEvent.IsCancelled)
             {
                 MaxAmmo += (uint) amount;
             }
             
-            return !_buyAmmoEvent.Cancelled;
+            return !_buyAmmoEvent.IsCancelled;
         }
 
         private readonly RemoteBuyAmmoEvent _remoteBuyAmmoEvent = new();
         public bool TryRemoteBuyAmmo(int amount)
         {
-            _remoteBuyAmmoEvent.Reset();
             _remoteBuyAmmoEvent.ReadFrom(this);
             _remoteBuyAmmoEvent.Count = amount;
             _remoteBuyAmmoEvent.Publish();
 
-            if (!_remoteBuyAmmoEvent.Cancelled)
+            if (!_remoteBuyAmmoEvent.IsCancelled)
             {
                 MaxAmmo += (uint) amount;
             }
             
-            return !_remoteBuyAmmoEvent.Cancelled;
+            return !_remoteBuyAmmoEvent.IsCancelled;
         }
 
         private void UpdateGunValue()

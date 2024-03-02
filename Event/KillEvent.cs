@@ -4,7 +4,7 @@ using JudgeSystem.Interfaces;
 
 namespace JudgeSystem.Event
 {
-    public class KillEvent: Event<KillEvent>
+    public class KillEvent
     {
         public IIdentityHolder Killer;
         public IIdentityHolder Victim;

@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class JudgeSystemWarningEvent: Event<JudgeSystemWarningEvent>
+    public class JudgeSystemWarningEvent
     {
         public string Module;
         public string Message;

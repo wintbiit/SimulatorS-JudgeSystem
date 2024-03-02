@@ -3,7 +3,7 @@ using JudgeSystem.Interfaces;
 
 namespace JudgeSystem.Event
 {
-    public abstract class IdentityHolderEvent<T>: Event<T> where T: Event<T>
+    public abstract class IdentityHolderEvent
     {
         public Camp Camp;
         public ushort Id;

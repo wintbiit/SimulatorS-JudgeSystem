@@ -60,7 +60,7 @@ namespace JudgeSystem._2024uc
 
             if (!robot.Buffs.Has<HealZoneBuff>())
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
 
@@ -71,14 +71,14 @@ namespace JudgeSystem._2024uc
             }
             if (exchanged + evt.Count > Performance.Predefined.Economy.AmmoPrices[ammo].MaxExchange)
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
             
             var price = GetPerAmmoCost(ammo, false) * evt.Count;
             if (!TryCost(robot.Camp, price))
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
             }
             
             _ammoExchanged[new AmmoRecordKey(evt.Camp, ammo)] = exchanged + evt.Count;
@@ -102,7 +102,7 @@ namespace JudgeSystem._2024uc
 
             if (!robot.Buffs.Has<HealZoneBuff>())
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
 
@@ -113,14 +113,14 @@ namespace JudgeSystem._2024uc
             }
             if (exchanged + evt.Count > Performance.Predefined.Economy.AmmoPrices[ammo].MaxExchange)
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
             
             var price = GetPerAmmoCost(ammo, true) * evt.Count;
             if (!TryCost(robot.Camp, price))
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
             
@@ -140,7 +140,7 @@ namespace JudgeSystem._2024uc
 
             if (!TryCost(robot.Camp, price))
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
             }
         }
         public int GetBuyReviveCost(int level)
@@ -209,13 +209,13 @@ namespace JudgeSystem._2024uc
             
             if (count >= Performance.Predefined.MaxDroneSummon)
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
             
             if (!TryCost(evt.Camp, price))
             {
-                evt.Cancelled = true;
+                evt.IsCancelled = true;
                 return;
             }
             
@@ -237,13 +237,13 @@ namespace JudgeSystem._2024uc
                 
                 if (!TryCost(robot.Camp, price))
                 {
-                    evt.Cancelled = true;
+                    evt.IsCancelled = true;
                 }
                 
                 return;
             }
 
-            evt.Cancelled = true;
+            evt.IsCancelled = true;
         }
         
         public int GetRemoteBuyHealthCost()

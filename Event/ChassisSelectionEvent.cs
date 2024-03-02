@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class ChassisSelectionEvent: IdentityHolderEvent<ChassisSelectionEvent>
+    public class ChassisSelectionEvent: IdentityHolderEvent
     {
         public int Chassis;
 

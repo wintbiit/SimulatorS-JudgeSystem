@@ -3,7 +3,7 @@ using JudgeSystem.Event;
 
 namespace JudgeSystem._2024uc.Events
 {
-    public class OutpostArmorStatusChangeEvent: IdentityHolderEvent<OutpostArmorStatusChangeEvent>
+    public class OutpostArmorStatusChangeEvent: IdentityHolderEvent
     {
         public OutpostArmorStatus ArmorStatus;
 

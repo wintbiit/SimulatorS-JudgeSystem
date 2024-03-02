@@ -16,7 +16,6 @@ namespace JudgeSystem._2024uc.Buildings
             {
                 if (_exchangeGrade == value) return;
                 _exchangeGrade = value;
-                _exchangerGradeSelectEvent.Reset();
                 _exchangerGradeSelectEvent.ReadFrom(this);
                 _exchangerGradeSelectEvent.Grade = value;
                 _exchangerGradeSelectEvent.Publish();
@@ -26,7 +25,6 @@ namespace JudgeSystem._2024uc.Buildings
         private readonly ExchangeOreEvent _exchangeOreEvent = new ();
         public void Exchange(IIdentityHolder exchanger, Ore ore)
         {
-            _exchangeOreEvent.Reset();
             _exchangeOreEvent.ReadFrom(this);
             _exchangeOreEvent.Ore = ore;
             _exchangeOreEvent.Grade = _exchangeGrade;

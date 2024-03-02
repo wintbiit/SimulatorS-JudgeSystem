@@ -3,7 +3,7 @@ using JudgeSystem.Interfaces;
 
 namespace JudgeSystem.Event
 {
-    public class HealthChangeEvent: IdentityHolderEvent<HealthChangeEvent>
+    public class HealthChangeEvent: IdentityHolderEvent
     {
         public float Health;
         

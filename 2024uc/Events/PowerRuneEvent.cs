@@ -4,9 +4,9 @@ using JudgeSystem.Event;
 
 namespace JudgeSystem._2024uc.Events
 {
-    public class PowerRuneStartEvent: Event<PowerRuneStartEvent>
+    public class PowerRuneStartEvent
     {
-        PowerRuneType Type;
+        public PowerRuneType Type;
         
         public void ReadFrom(IPowerRuneController powerRuneController)
         {
@@ -14,9 +14,9 @@ namespace JudgeSystem._2024uc.Events
         }
     }
     
-    public class PowerRuneEndEvent: Event<PowerRuneEndEvent>
+    public class PowerRuneEndEvent
     {
-        PowerRuneType Type;
+        public PowerRuneType Type;
         
         public void ReadFrom(IPowerRuneController powerRuneController)
         {
@@ -24,9 +24,9 @@ namespace JudgeSystem._2024uc.Events
         }
     }
     
-    public class PowerRuneActivateEvent: IdentityHolderEvent<PowerRuneActivateEvent>
+    public class PowerRuneActivateEvent: IdentityHolderEvent
     {
-        PowerRuneType Type;
+        public PowerRuneType Type;
         public int RingCount;
 
         public void ReadFrom(IPowerRuneController powerRuneController)

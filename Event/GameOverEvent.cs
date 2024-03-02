@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class GameOverEvent: Event<GameOverEvent>
+    public class GameOverEvent
     {
         
     }

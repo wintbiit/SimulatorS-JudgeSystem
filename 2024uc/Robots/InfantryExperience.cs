@@ -38,7 +38,6 @@ namespace JudgeSystem._2024uc.Robots
             {
                 if (_level == value) return;
                 _level = value;
-                _levelUpEvent.Reset();
                 _levelUpEvent.ReadFrom(this);
                 _levelUpEvent.Publish();
             }

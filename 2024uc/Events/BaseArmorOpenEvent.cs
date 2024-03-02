@@ -2,7 +2,7 @@
 
 namespace JudgeSystem._2024uc.Events
 {
-    public class BaseArmorOpenEvent: IdentityHolderEvent<BaseArmorOpenEvent>
+    public class BaseArmorOpenEvent: IdentityHolderEvent
     {
         
     }

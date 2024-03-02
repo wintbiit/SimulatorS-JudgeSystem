@@ -22,13 +22,11 @@ namespace JudgeSystem._2024uc.Buildings
 
                 if (_status == PowerRuneStatus.Active)
                 {
-                    _startEvent.Reset();
                     _startEvent.ReadFrom(this);
                     _startEvent.Publish();
                     Logs.I($"Power Rune {Type} Started");
                 } else if (_status == PowerRuneStatus.Inactive)
                 {
-                    _endEvent.Reset();
                     _endEvent.ReadFrom(this);
                     _endEvent.Publish();
                     Logs.I($"Power Rune {Type} Ended");
@@ -59,7 +57,6 @@ namespace JudgeSystem._2024uc.Buildings
             LastRingCount = ringCount;
             Status = PowerRuneStatus.Activated;
             
-            _activateEvent.Reset();
             _activateEvent.ReadFrom(this);
             _activateEvent.Publish();
         }

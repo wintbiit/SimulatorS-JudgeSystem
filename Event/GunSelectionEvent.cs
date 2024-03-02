@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class GunSelectionEvent: IdentityHolderEvent<GunSelectionEvent>
+    public class GunSelectionEvent: IdentityHolderEvent
     {
         public int Gun;
 

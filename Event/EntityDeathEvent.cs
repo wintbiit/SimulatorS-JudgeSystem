@@ -1,6 +1,6 @@
 ﻿namespace JudgeSystem.Event
 {
-    public class EntityDeathEvent: IdentityHolderEvent<EntityDeathEvent>
+    public class EntityDeathEvent: IdentityHolderEvent
     {
         
     }

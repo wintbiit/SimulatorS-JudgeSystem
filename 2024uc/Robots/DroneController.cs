@@ -9,10 +9,9 @@ namespace JudgeSystem._2024uc.Robots
         private readonly DroneSummonEvent _droneSummonEvent = new ();
         public bool TrySummon()
         {
-            _droneSummonEvent.Reset();
             _droneSummonEvent.ReadFrom(this);
             _droneSummonEvent.Publish();
-            return !_droneSummonEvent.Cancelled;
+            return !_droneSummonEvent.IsCancelled;
         }
     }
 }

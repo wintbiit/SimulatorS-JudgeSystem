@@ -17,7 +17,6 @@ namespace JudgeSystem._2024uc.Buildings
                 _armorStatus = value;
                 if (_armorStatus == BaseArmorStatus.Opened)
                 {
-                    _baseArmorOpenEvent.Reset();
                     _baseArmorOpenEvent.ReadFrom(this);
                     _baseArmorOpenEvent.Publish();
                 }

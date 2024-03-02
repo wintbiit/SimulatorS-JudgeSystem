@@ -35,13 +35,11 @@ namespace JudgeSystem._2024uc.Buildings
                 }
                 
                 if (_cachedHealth == _currentHealth) return;
-                _healthChangeEvent.Reset();
                 _healthChangeEvent.ReadFrom(this);
                 _healthChangeEvent.Publish();
                     
                 if (_currentHealth <= 0)
                 {
-                    _entityDeathEvent.Reset();
                     _entityDeathEvent.ReadFrom(this);
                     _entityDeathEvent.Publish();
                 }

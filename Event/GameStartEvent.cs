@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class GameStartEvent: Event<GameStartEvent>
+    public class GameStartEvent
     {
         
     }

@@ -3,7 +3,7 @@ using JudgeSystem.Interfaces;
 
 namespace JudgeSystem.Event
 {
-    public class DamageEvent: Event<DamageEvent>
+    public class DamageEvent
     {
         public IIdentityHolder Attacker;
         public IIdentityHolder Victim;

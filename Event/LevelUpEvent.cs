@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class LevelUpEvent: IdentityHolderEvent<LevelUpEvent>
+    public class LevelUpEvent: IdentityHolderEvent
     {
         public uint Level;
         

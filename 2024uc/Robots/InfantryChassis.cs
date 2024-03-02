@@ -19,7 +19,6 @@ namespace JudgeSystem._2024uc.Robots
             {
                 if (Chassis == value) return;
                 _chassis = (Chassis) value;
-                _chassisSelectionEvent.Reset();
                 _chassisSelectionEvent.ReadFrom(this);
                 _chassisSelectionEvent.Publish();
 

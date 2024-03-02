@@ -42,33 +42,31 @@ namespace JudgeSystem._2024uc.Robots
         private readonly BuyAmmoEvent _buyAmmoEvent = new();
         public bool TryBuyAmmo(int amount)
         {
-            _buyAmmoEvent.Reset();
             _buyAmmoEvent.ReadFrom(this);
             _buyAmmoEvent.Count = amount;
             _buyAmmoEvent.Publish();
 
-            if (!_buyAmmoEvent.Cancelled)
+            if (!_buyAmmoEvent.IsCancelled)
             {
                 MaxAmmo += (uint) amount;
             }
             
-            return !_buyAmmoEvent.Cancelled;
+            return !_buyAmmoEvent.IsCancelled;
         }
 
         private readonly RemoteBuyAmmoEvent _remoteBuyAmmoEvent = new();
         public bool TryRemoteBuyAmmo(int amount)
         {
-            _remoteBuyAmmoEvent.Reset();
             _remoteBuyAmmoEvent.ReadFrom(this);
             _remoteBuyAmmoEvent.Count = amount;
             _remoteBuyAmmoEvent.Publish();
 
-            if (!_remoteBuyAmmoEvent.Cancelled)
+            if (!_remoteBuyAmmoEvent.IsCancelled)
             {
                 MaxAmmo += (uint) amount;
             }
             
-            return !_remoteBuyAmmoEvent.Cancelled;
+            return !_remoteBuyAmmoEvent.IsCancelled;
         }
     }
 }

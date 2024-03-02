@@ -16,7 +16,6 @@ namespace JudgeSystem._2024uc.Buildings
                 if (_armorStatus == value) return;
                 
                 _armorStatus = value;
-                _outpostArmorStatusChangeEvent.Reset();
                 _outpostArmorStatusChangeEvent.ReadFrom(this);
                 _outpostArmorStatusChangeEvent.Publish();
             }

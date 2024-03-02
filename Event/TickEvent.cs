@@ -2,7 +2,7 @@
 
 namespace JudgeSystem.Event
 {
-    public class TickEvent: Event<TickEvent>
+    public class TickEvent
     {
         public int Time;
     }
