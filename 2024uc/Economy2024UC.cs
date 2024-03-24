@@ -252,3 +252,8 @@ namespace JudgeSystem._2024uc
         }
     }
 }
+
+namespace System.Runtime.CompilerServices
+{
+    internal class IsExternalInit{}
+}
