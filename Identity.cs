@@ -1,5 +1,8 @@
-﻿namespace JudgeSystem
+﻿using System;
+
+namespace JudgeSystem
 {
+    [Serializable]
     public struct Identity
     {
         public Camp Camp;
